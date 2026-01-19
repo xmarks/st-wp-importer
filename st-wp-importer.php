@@ -18,7 +18,7 @@
  * Description:       plugin connects to "source-site" database, and imports Posts / CPT alongside media and metadata (for plugins as well) into "currently-installed site"
  * Version:           1.0.0
  * Author:            SnailTheme
- * Author URI:        https://www.snailtheme.com//
+ * Author URI:        https://www.snailtheme.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       st-wp-importer
