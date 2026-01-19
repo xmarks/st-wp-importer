@@ -31,6 +31,20 @@ class St_Wp_Importer_Activator {
 	 */
 	public static function activate() {
 
+		// Ensure mapping table exists.
+		require_once plugin_dir_path( __FILE__ ) . 'class-st-wp-importer-settings.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-st-wp-importer-logger.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-st-wp-importer-map.php';
+
+		$settings = new St_Wp_Importer_Settings();
+		$logger   = new St_Wp_Importer_Logger( $settings );
+		$map      = new St_Wp_Importer_Map( $logger );
+		$map->maybe_create_table();
+
+		// Seed defaults if not present.
+		if ( ! get_option( St_Wp_Importer_Settings::OPTION_KEY ) ) {
+			$settings->save( $settings->defaults() );
+		}
 	}
 
 }

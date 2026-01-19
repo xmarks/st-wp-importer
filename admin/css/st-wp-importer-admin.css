@@ -1,4 +1,35 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+.stwi-wrap .stwi-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 20px;
+}
+
+.stwi-card {
+	background: #fff;
+	border: 1px solid #ccd0d4;
+	border-radius: 4px;
+	padding: 16px;
+	box-shadow: 0 1px 1px rgba(0,0,0,0.04);
+}
+
+.stwi-scope-table input {
+	width: 100%;
+}
+
+.stwi-status-table th {
+	width: 180px;
+}
+
+.stwi-actions .button {
+	margin-right: 8px;
+	margin-bottom: 8px;
+}
+
+@media (min-width: 960px) {
+	.stwi-wrap .stwi-grid {
+		grid-template-columns: 2fr 1.2fr;
+	}
+	.stwi-wrap .stwi-grid > .stwi-card:nth-child(3) {
+		grid-column: 1 / 3;
+	}
+}

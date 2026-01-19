@@ -30,7 +30,8 @@ class St_Wp_Importer_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		// Clear cron hook on deactivation.
+		wp_clear_scheduled_hook( 'stwi_run_batch' );
 	}
 
 }
