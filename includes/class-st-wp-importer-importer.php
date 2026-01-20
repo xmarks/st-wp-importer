@@ -469,11 +469,11 @@ class St_Wp_Importer_Importer {
 		$display  = $user_row['display_name'] ?? '';
 		$meta     = $source_user['meta'] ?? array();
 
-		// Try local user by email.
-		if ( $email ) {
-			$local = get_user_by( 'email', $email );
+		// Try local user by login (unique in WP).
+		if ( $login ) {
+			$local = get_user_by( 'login', $login );
 			if ( $local ) {
-				$this->logger->log( 'INFO', 'Resolved author by email match', array( 'email' => $email, 'local_id' => $local->ID ) );
+				$this->logger->log( 'INFO', 'Resolved author by login match', array( 'login' => $login, 'local_id' => $local->ID ) );
 				if ( ! $dry_run ) {
 					$this->map->upsert( (int) $settings['source_blog_id'], 'user', $source_user_id, (int) $local->ID );
 				}
@@ -481,11 +481,11 @@ class St_Wp_Importer_Importer {
 			}
 		}
 
-		// Try local user by login.
-		if ( $login ) {
-			$local = get_user_by( 'login', $login );
+		// Then try by email (not guaranteed unique).
+		if ( $email ) {
+			$local = get_user_by( 'email', $email );
 			if ( $local ) {
-				$this->logger->log( 'INFO', 'Resolved author by login match', array( 'login' => $login, 'local_id' => $local->ID ) );
+				$this->logger->log( 'INFO', 'Resolved author by email match', array( 'email' => $email, 'local_id' => $local->ID ) );
 				if ( ! $dry_run ) {
 					$this->map->upsert( (int) $settings['source_blog_id'], 'user', $source_user_id, (int) $local->ID );
 				}
