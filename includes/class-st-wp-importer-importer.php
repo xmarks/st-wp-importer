@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Batch importer (stub for now).
- *
- * Future work: implement real post/media import. Currently logs and returns early
- * to keep cron/controls wired without breaking the UI.
+ * Batch importer.
  */
 class St_Wp_Importer_Importer {
 
@@ -201,6 +198,8 @@ class St_Wp_Importer_Importer {
 		$rewrite = $this->content->rewrite( $row['post_content'], $settings, $dry_run );
 		$row['post_content'] = $rewrite['content'];
 
+		$author_id = $this->resolve_author( (int) $row['post_author'], $settings, $dry_run );
+
 		$base_post = array(
 			'post_type'      => $post_type,
 			'post_status'    => $row['post_status'],
@@ -215,7 +214,7 @@ class St_Wp_Importer_Importer {
 			'post_date_gmt'  => $row['post_date_gmt'],
 			'post_modified'  => current_time( 'mysql' ),
 			'post_modified_gmt' => current_time( 'mysql', 1 ),
-			'post_author'    => get_current_user_id() ?: 1,
+			'post_author'    => $author_id,
 		);
 
 		$status = 'skipped';
@@ -424,5 +423,139 @@ class St_Wp_Importer_Importer {
 				wp_set_object_terms( $dest_id, array( (int) $dest_term->term_id ), $taxonomy, true );
 			}
 		}
+	}
+
+	/**
+	 * Resolve destination author for a source user ID.
+	 *
+	 * @param int   $source_user_id
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return int
+	 */
+	private function resolve_author( int $source_user_id, array $settings, bool $dry_run ): int {
+		$fallback = get_current_user_id() ?: 1;
+		if ( $source_user_id <= 0 ) {
+			$this->logger->log( 'ERROR', 'Source post has no author; using fallback', array( 'fallback' => $fallback ) );
+			return $fallback;
+		}
+
+		$mapped = $this->map->get_destination_id( (int) $settings['source_blog_id'], 'user', $source_user_id );
+		if ( $mapped ) {
+			$user = get_user_by( 'id', $mapped );
+			if ( $user ) {
+				return (int) $mapped;
+			}
+			$this->logger->log(
+				'ERROR',
+				'Mapped author missing locally; falling back',
+				array( 'mapped_id' => $mapped, 'source_user_id' => $source_user_id )
+			);
+		}
+
+		$source_user = $this->source_db->get_user_with_meta( $source_user_id, $settings );
+		if ( empty( $source_user['user'] ) ) {
+			$this->logger->log(
+				'ERROR',
+				'Source author not found; using fallback',
+				array( 'source_user_id' => $source_user_id, 'fallback' => $fallback )
+			);
+			return $fallback;
+		}
+
+		$user_row = $source_user['user'];
+		$email    = $user_row['user_email'] ?? '';
+		$login    = $user_row['user_login'] ?? '';
+		$display  = $user_row['display_name'] ?? '';
+		$meta     = $source_user['meta'] ?? array();
+
+		// Try local user by email.
+		if ( $email ) {
+			$local = get_user_by( 'email', $email );
+			if ( $local ) {
+				$this->logger->log( 'INFO', 'Resolved author by email match', array( 'email' => $email, 'local_id' => $local->ID ) );
+				if ( ! $dry_run ) {
+					$this->map->upsert( (int) $settings['source_blog_id'], 'user', $source_user_id, (int) $local->ID );
+				}
+				return (int) $local->ID;
+			}
+		}
+
+		// Try local user by login.
+		if ( $login ) {
+			$local = get_user_by( 'login', $login );
+			if ( $local ) {
+				$this->logger->log( 'INFO', 'Resolved author by login match', array( 'login' => $login, 'local_id' => $local->ID ) );
+				if ( ! $dry_run ) {
+					$this->map->upsert( (int) $settings['source_blog_id'], 'user', $source_user_id, (int) $local->ID );
+				}
+				return (int) $local->ID;
+			}
+		}
+
+		// Would create new user.
+		$userdata = array(
+			'user_login'   => sanitize_user( $login ?: ( $email ?: 'stwi_author_' . $source_user_id ), true ),
+			'user_email'   => $email ?: '',
+			'display_name' => $display ?: ( $login ?: 'Imported Author ' . $source_user_id ),
+			'user_pass'    => wp_generate_password( 20, true ),
+		);
+
+		$first = '';
+		$last  = '';
+		foreach ( $meta as $m ) {
+			if ( 'first_name' === $m['meta_key'] ) {
+				$first = $m['meta_value'];
+			} elseif ( 'last_name' === $m['meta_key'] ) {
+				$last = $m['meta_value'];
+			}
+		}
+		if ( $first ) {
+			$userdata['first_name'] = $first;
+		}
+		if ( $last ) {
+			$userdata['last_name'] = $last;
+		}
+
+		if ( $dry_run ) {
+			$this->logger->log(
+				'INFO',
+				'[DRY RUN] Would create author user',
+				array(
+					'source_user_id' => $source_user_id,
+					'user_login'     => $userdata['user_login'],
+					'user_email'     => $userdata['user_email'],
+				)
+			);
+			return $fallback;
+		}
+
+		$new_user_id = wp_insert_user( $userdata );
+		if ( is_wp_error( $new_user_id ) ) {
+			$this->logger->log(
+				'ERROR',
+				'Failed to create author; using fallback',
+				array(
+					'source_user_id' => $source_user_id,
+					'error'          => $new_user_id->get_error_message(),
+					'fallback'       => $fallback,
+				)
+			);
+			return $fallback;
+		}
+
+		$this->map->upsert( (int) $settings['source_blog_id'], 'user', $source_user_id, (int) $new_user_id );
+		$this->logger->log(
+			'INFO',
+			'Created author user',
+			array(
+				'source_user_id' => $source_user_id,
+				'dest_user_id'   => (int) $new_user_id,
+				'user_login'     => $userdata['user_login'],
+				'user_email'     => $userdata['user_email'],
+			)
+		);
+
+		return (int) $new_user_id;
 	}
 }

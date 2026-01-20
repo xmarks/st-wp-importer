@@ -1,0 +1,65 @@
+λ wp plugin list
++-----------------------------------+----------------+------------------------------+----------+----------------+-------------+
+| name                              | status         | update                       | version  | update_version | auto_update |
++-----------------------------------+----------------+------------------------------+----------+----------------+-------------+
+| accordion-blocks                  | active         | none                         | 1.5.0    |                | off         |
+| acf-blocks                        | active-network | none                         | 2.6.11   |                | off         |
+| aryo-activity-log                 | active-network | none                         | 2.11.2   |                | off         |
+| admin-taxonomy-filter             | active         | none                         | 1.0.5    |                | off         |
+| acf-svg-icon-master               | active-network | none                         | 1.0.1    |                | off         |
+| advanced-custom-fields-pro        | active         | none                         | 6.7.0.2  |                | off         |
+| better-search-replace             | active         | none                         | 1.4.10   |                | off         |
+| powerpress                        | active         | available                    | 11.15.7  | 11.15.10       | off         |
+| classic-widgets                   | inactive       | none                         | 0.3      |                | off         |
+| clickcease-click-fraud-protection | active-network | none                         | 3.2.13   |                | on          |
+| bv-cloudways-automated-migration  | active-network | none                         | 5.88     |                | off         |
+| cookie-law-info                   | active         | available                    | 3.3.8    | 3.3.9.1        | off         |
+| duplicate-page                    | active         | none                         | 4.5.6    |                | off         |
+| elementor                         | inactive       | available                    | 3.33.4   | 3.34.2         | off         |
+| em-blocks                         | active         | none                         | 0.0.5    |                | off         |
+| gilber_helper_plugin              | inactive       | none                         | 1.0.0    |                | off         |
+| git-updater                       | active-network | version higher than expected | 12.4.0   |                | off         |
+| hreflang-manager-lite             | active         | none                         | 1.13     |                | off         |
+| leadin                            | active-network | available                    | 11.3.33  | 11.3.37        | off         |
+| layout-grid                       | active         | none                         | 1.8.4    |                | off         |
+| members                           | active-network | none                         | 3.2.18   |                | off         |
+| meta-tag-manager                  | active         | none                         | 3.3      |                | off         |
+| multiple-roles                    | active-network | none                         | 1.3.7    |                | off         |
+| one-click-demo-import             | inactive       | none                         | 3.4.0    |                | off         |
+| password-protect-page             | inactive       | none                         | 1.9.15   |                | off         |
+| permalink-manager-pro             | active         | available                    | 2.5.2.2  | 2.5.2.4        | off         |
+| podcast-subscribe-buttons         | active-network | none                         | 1.5.5    |                | off         |
+| premium-addons-for-elementor      | active-network | available                    | 4.11.57  | 4.11.64        | off         |
+| procoders-blocks                  | active         | version higher than expected | 1.0.1    |                | off         |
+| wp-user-avatar                    | active         | none                         | 4.16.8   |                | off         |
+| publishpress-authors              | active         | none                         | 4.10.1   |                | off         |
+| capabilities-pro                  | active-network | none                         | 2.23.0   |                | off         |
+| presspermit-pro                   | active-network | none                         | 4.6.1    |                | off         |
+| revisionary-pro                   | active-network | none                         | 3.7.21   |                | off         |
+| publishpress-statuses             | active-network | none                         | 1.1.14   |                | off         |
+| query-monitor                     | active         | none                         | 3.20.2   |                | off         |
+| redirection                       | active-network | available                    | 5.5.2    | 5.6.1          | off         |
+| responsive-lightbox-lite          | active-network | none                         | 1.3.5    |                | off         |
+| em-cookie-notification            | active         | none                         | 1.0.1    |                | off         |
+| simple-history                    | active         | available                    | 5.20.0   | 5.22.0         | off         |
+| smart-slider-3                    | active-network | available                    | 3.5.1.31 | 3.5.1.32       | off         |
+| stop-user-enumeration             | inactive       | none                         | 1.7.7    |                | off         |
+| svg-support                       | active         | none                         | 2.5.14   |                | off         |
+| ultimate-410                      | active-network | none                         | 1.1.7    |                | off         |
+| user-switching                    | active-network | none                         | 1.11.1   |                | off         |
+| webp-express                      | active         | available                    | 0.25.9   | 0.25.14        | off         |
+| blogvault-real-time-backup        | active-network | available                    | 5.73     | 6.02           | off         |
+| wordpress-importer                | active         | none                         | 0.9.5    |                | off         |
+| wpae-acf-add-on                   | active         | none                         | 1.0.6    |                | off         |
+| wpae-user-add-on-pro              | active         | none                         | 1.0.11   |                | off         |
+| wp-all-export-pro                 | active         | none                         | 1.9.15   |                | off         |
+| wpai-acf-add-on                   | inactive       | none                         | 3.3.8    |                | off         |
+| wpai-user-add-on                  | inactive       | none                         | 1.1.8    |                | off         |
+| wp-all-import-pro                 | inactive       | none                         | 4.7.8    |                | off         |
+| insert-headers-and-footers        | active         | none                         | 2.3.2.1  |                | off         |
+| wpdatatables                      | active-network | available                    | 6.4      | 6.4.0.4        | off         |
+| wp-rocket                         | inactive       | none                         | 3.16.3   |                | off         |
+| wordpress-seo                     | active-network | available                    | 26.6     | 26.8           | off         |
+| yoast-test-helper                 | active-network | none                         | 1.18     |                | off         |
+| advanced-cache.php                | dropin         |                              |          |                | off         |
++-----------------------------------+----------------+------------------------------+----------+----------------+-------------+

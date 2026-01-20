@@ -1,24 +1,29 @@
-[STWI] [INFO] 2026-01-20 09:01:16 Importer state reset (mapping cleared, log truncated).
-[STWI] [INFO] 2026-01-20 09:01:30 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":5,"cursor":[],"dry_run":true}
-[STWI] [INFO] 2026-01-20 09:01:30 Fetched posts for type {"post_type":"post","from_id":0,"limit":5,"found":5}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would upsert post {"source_id":37293,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:01:30 Processed post {"source_id":37293,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08","post_title":"SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [ERROR] 2026-01-20 09:01:30 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","path":"2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03","post_title":"Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [ERROR] 2026-01-20 09:01:30 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","path":"2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05","post_title":"SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [ERROR] 2026-01-20 09:01:30 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","path":"2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would upsert post {"source_id":37294,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:01:30 Processed post {"source_id":37294,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would upsert post {"source_id":37295,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:01:30 Processed post {"source_id":37295,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would upsert post {"source_id":37296,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:01:30 Processed post {"source_id":37296,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [ERROR] 2026-01-20 09:01:30 Attachment not found in source DB {"attachment_id":12730}
-[STWI] [ERROR] 2026-01-20 09:01:30 Failed to update wp-image class (attachment missing) {"old_id":12730}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would import attachment {"source_id":36297,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02","post_title":"Training-Plan"}
-[STWI] [ERROR] 2026-01-20 09:01:30 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","path":"2023\/02\/Training-Plan.png"}
-[STWI] [INFO] 2026-01-20 09:01:30 [DRY RUN] Would upsert post {"source_id":37297,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:01:30 Processed post {"source_id":37297,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:01:30 Batch completed {"processed":5,"dry_run":true,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37297}}
+[STWI] [INFO] 2026-01-20 09:54:41 Importer state reset (mapping cleared, log truncated).
+[STWI] [INFO] 2026-01-20 09:54:48 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":5,"cursor":[],"dry_run":true}
+[STWI] [INFO] 2026-01-20 09:54:48 Fetched posts for type {"post_type":"post","from_id":0,"limit":5,"found":5}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37293,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37293,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08","post_title":"SF_Cloud_Migration-infographic-08.03.20.pdf"}
+[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","path":"2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03","post_title":"Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
+[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","path":"2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05","post_title":"SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
+[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","path":"2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":642,"user_login":"michaelwhite","user_email":"mwhite@gpstrategies.com"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37294,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37294,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37295,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37295,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37296,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37296,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
+[STWI] [ERROR] 2026-01-20 09:54:49 Attachment not found in source DB {"attachment_id":12730}
+[STWI] [ERROR] 2026-01-20 09:54:49 Failed to update wp-image class (attachment missing) {"old_id":12730}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":36297,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02","post_title":"Training-Plan"}
+[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","path":"2023\/02\/Training-Plan.png"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":538,"user_login":"cnolen@emagine.com","user_email":"cnolen@emagine.com"}
+[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37297,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37297,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
+[STWI] [INFO] 2026-01-20 09:54:49 Batch completed {"processed":5,"dry_run":true,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37297}}

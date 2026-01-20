@@ -205,4 +205,29 @@ class St_Wp_Importer_Source_DB {
 		);
 		return $db->get_results( $sql, ARRAY_A ) ?: array();
 	}
+
+	/**
+	 * Fetch user + meta by user ID.
+	 *
+	 * @param int   $user_id
+	 * @param array $settings
+	 * @return array { user: array|null, meta: array }
+	 */
+	public function get_user_with_meta( int $user_id, array $settings ): array {
+		$db     = $this->connect( $settings );
+		$prefix = $settings['source_table_prefix'] ?? 'wp_';
+		$users  = $prefix . 'users';
+		$umeta  = $prefix . 'usermeta';
+
+		$sql  = $db->prepare( "SELECT * FROM {$users} WHERE ID = %d", $user_id );
+		$user = $db->get_row( $sql, ARRAY_A );
+
+		$sqlm = $db->prepare( "SELECT meta_key, meta_value FROM {$umeta} WHERE user_id = %d", $user_id );
+		$meta = $db->get_results( $sqlm, ARRAY_A ) ?: array();
+
+		return array(
+			'user' => $user,
+			'meta' => $meta,
+		);
+	}
 }
