@@ -80,9 +80,11 @@ class St_Wp_Importer_Media {
 	 */
 	public function import_attachment_record( int $source_id, array $post_row, array $meta_rows, array $settings, bool $dry_run = false ): ?int {
 		$source_blog_id = (int) $settings['source_blog_id'];
-		$existing       = $this->map->get_destination_id( $source_blog_id, 'attachment', $source_id );
-		if ( $existing ) {
-			return $existing;
+		if ( $source_id > 0 ) {
+			$existing = $this->map->get_destination_id( $source_blog_id, 'attachment', $source_id );
+			if ( $existing ) {
+				return $existing;
+			}
 		}
 
 		$attached_file = '';
@@ -191,6 +193,9 @@ class St_Wp_Importer_Media {
 		if ( $source_id > 0 ) {
 			$this->map->upsert( $source_blog_id, 'attachment', $source_id, (int) $attachment_id );
 			update_post_meta( $attachment_id, '_stwi_source_attachment_id', $source_id );
+		} else {
+			$hash = abs( crc32( $attached_file ) );
+			$this->map->upsert( $source_blog_id, 'attachment_url', $hash, (int) $attachment_id );
 		}
 		update_post_meta( $attachment_id, '_stwi_source_attached_file', $attached_file );
 

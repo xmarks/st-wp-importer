@@ -103,8 +103,12 @@
 					<tr>
 						<th scope="row">Plugin data</th>
 						<td>
-							<label><input name="plugin_yoastseo" type="checkbox" value="1" <?php checked( $settings['plugin_yoastseo'], 1 ); ?>> Include Yoast SEO metadata</label>
-							<p class="description">Future phases will map source plugin data; Yoast is required.</p>
+							<p><label><input name="plugin_yoastseo" type="checkbox" value="1" <?php checked( $settings['plugin_yoastseo'], 1 ); ?>> Include Yoast SEO metadata</label></p>
+							<p><label><input name="plugin_acf" type="checkbox" value="1" <?php checked( $settings['plugin_acf'], 1 ); ?>> Include ACF meta</label></p>
+							<p><label><input name="plugin_hreflang" type="checkbox" value="1" <?php checked( $settings['plugin_hreflang'], 1 ); ?>> Include Hreflang Manager meta (hreflang-*)</label></p>
+							<p><label><input name="plugin_permalink_manager" type="checkbox" value="1" <?php checked( $settings['plugin_permalink_manager'], 1 ); ?>> Include Permalink Manager Pro meta</label></p>
+							<p><label><input name="plugin_redirection" type="checkbox" value="1" <?php checked( $settings['plugin_redirection'], 1 ); ?>> Include Redirection data (placeholder)</label></p>
+							<p class="description">Toggle plugin-specific migrations. Logs remain verbose for debugging.</p>
 						</td>
 					</tr>
 				</table>
@@ -190,7 +194,7 @@
 			<h2>Danger Zone</h2>
 			<p class="description"><strong>Deletes only content imported via this plugin (using the mapping table), even if edited after import.</strong> Cannot be undone. Runs in small batches.</p>
 			<button type="button" class="button stwi-danger-button" id="stwi-delete-imported">Delete Imported Content</button>
-			<p class="description">Processes items one batch at a time (posts and attachments). Click again if items remain. When nothing remains, importer state (cursor/stats), mapping table, and log are reset.</p>
+			<p class="description">Processes items one batch at a time (posts, attachments, terms, users). Click again if items remain. When nothing remains, importer state (cursor/stats), mapping table, and log are reset.</p>
 			<div id="stwi-delete-status"></div>
 		</div>
 	</div>

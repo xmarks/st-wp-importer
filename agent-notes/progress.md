@@ -8,6 +8,8 @@
 - Author handling: resolves by existing mapping → username (login) → email → creates user (dry-run logs only). Maps `user` entries for reuse.
 - Dry runs no longer advance cursors/stats/last_run.
 - Danger zone now deletes mapped content and, when empty, resets mapping/state/log.
+- Yoast SEO toggle added; Yoast meta imported only when enabled, with verbose logging. Other plugin toggles (Hreflang, Permalink Manager Pro, Redirection) added (placeholders for now).
+- ACF toggle added (default on); ACF meta included unless disabled (we already copy all meta except edit locks/thumbnail/Yoast when off).
 
 ## Outstanding / Next
 - Plugin metadata migrations:

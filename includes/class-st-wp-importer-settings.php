@@ -29,6 +29,10 @@ class St_Wp_Importer_Settings {
 			'dry_run'             => 1,
 			'enable_logging'      => 1,
 			'plugin_yoastseo'     => 1,
+			'plugin_acf'         => 1,
+			'plugin_hreflang'     => 1,
+			'plugin_permalink_manager' => 1,
+			'plugin_redirection'  => 1,
 			'import_scope'        => array(
 				array(
 					'post_type'  => 'post',
@@ -128,6 +132,10 @@ class St_Wp_Importer_Settings {
 		$out['dry_run']              = isset( $input['dry_run'] ) ? 1 : 0;
 		$out['enable_logging']       = isset( $input['enable_logging'] ) ? 1 : 0;
 		$out['plugin_yoastseo']      = isset( $input['plugin_yoastseo'] ) ? 1 : 0;
+		$out['plugin_acf']           = isset( $input['plugin_acf'] ) ? 1 : 0;
+		$out['plugin_hreflang']      = isset( $input['plugin_hreflang'] ) ? 1 : 0;
+		$out['plugin_permalink_manager'] = isset( $input['plugin_permalink_manager'] ) ? 1 : 0;
+		$out['plugin_redirection']   = isset( $input['plugin_redirection'] ) ? 1 : 0;
 
 		$raw_scope            = $input['import_scope'] ?? array();
 		$out['import_scope']  = $this->sanitize_scope( $raw_scope );

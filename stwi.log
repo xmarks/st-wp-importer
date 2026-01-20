@@ -1,29 +1,67 @@
-[STWI] [INFO] 2026-01-20 09:54:41 Importer state reset (mapping cleared, log truncated).
-[STWI] [INFO] 2026-01-20 09:54:48 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":5,"cursor":[],"dry_run":true}
-[STWI] [INFO] 2026-01-20 09:54:48 Fetched posts for type {"post_type":"post","from_id":0,"limit":5,"found":5}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37293,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37293,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08","post_title":"SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","path":"2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03","post_title":"Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","path":"2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05","post_title":"SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","path":"2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":642,"user_login":"michaelwhite","user_email":"mwhite@gpstrategies.com"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37294,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37294,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37295,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37295,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":646,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37296,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37296,"dest_id":null,"post_type":"post","status":"skipped","meta_count":69,"attachments_imported":0}
-[STWI] [ERROR] 2026-01-20 09:54:49 Attachment not found in source DB {"attachment_id":12730}
-[STWI] [ERROR] 2026-01-20 09:54:49 Failed to update wp-image class (attachment missing) {"old_id":12730}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would import attachment {"source_id":36297,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02","post_title":"Training-Plan"}
-[STWI] [ERROR] 2026-01-20 09:54:49 Failed to rewrite upload URL (attachment missing) {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","path":"2023\/02\/Training-Plan.png"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would create author user {"source_user_id":538,"user_login":"cnolen@emagine.com","user_email":"cnolen@emagine.com"}
-[STWI] [INFO] 2026-01-20 09:54:49 [DRY RUN] Would upsert post {"source_id":37297,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 09:54:49 Processed post {"source_id":37297,"dest_id":null,"post_type":"post","status":"skipped","meta_count":46,"attachments_imported":0}
-[STWI] [INFO] 2026-01-20 09:54:49 Batch completed {"processed":5,"dry_run":true,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37297}}
+[STWI] [INFO] 2026-01-20 12:01:26 Importer state reset (mapping cleared, log truncated).
+[STWI] [INFO] 2026-01-20 12:01:54 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":[],"dry_run":false}
+[STWI] [INFO] 2026-01-20 12:01:54 Fetched posts for type {"post_type":"post","from_id":0,"limit":1,"found":1}
+[STWI] [INFO] 2026-01-20 12:01:55 Mapping updated {"object_type":"user","source_id":646,"dest_id":8}
+[STWI] [INFO] 2026-01-20 12:01:55 Created author user {"source_user_id":646,"dest_user_id":8,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
+[STWI] [INFO] 2026-01-20 12:01:55 Author resolved for post {"source_post_id":37293,"source_author":646,"dest_author":8,"dry_run":false}
+[STWI] [INFO] 2026-01-20 12:01:55 Upserting post {"source_id":37293,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-20 12:01:57 Mapping updated {"object_type":"post","source_id":37293,"dest_id":50}
+[STWI] [INFO] 2026-01-20 12:01:57 Imported post meta {"dest_id":50,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-20 12:01:58 Imported post meta {"dest_id":50,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-20 12:01:59 Imported post meta {"dest_id":50,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-20 12:02:00 Imported post meta {"dest_id":50,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported post meta {"dest_id":50,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported post meta {"dest_id":50,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-20 12:02:01 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-20 12:02:02 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-20 12:02:02 Imported Yoast meta {"dest_id":50,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-20 12:02:02 Downloading attachment {"source_id":36282,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-20 12:02:04 Mapping updated {"object_type":"attachment","source_id":36282,"dest_id":51}
+[STWI] [INFO] 2026-01-20 12:02:04 Imported attachment {"source_id":36282,"dest_id":51,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled"}
+[STWI] [INFO] 2026-01-20 12:02:05 Mapping updated {"object_type":"term","source_id":45,"dest_id":45}
+[STWI] [INFO] 2026-01-20 12:02:05 Mapping updated {"object_type":"term","source_id":46,"dest_id":46}
+[STWI] [INFO] 2026-01-20 12:02:06 Mapping updated {"object_type":"term","source_id":47,"dest_id":47}
+[STWI] [INFO] 2026-01-20 12:02:07 Mapping updated {"object_type":"term","source_id":48,"dest_id":48}
+[STWI] [INFO] 2026-01-20 12:02:08 Mapping updated {"object_type":"term","source_id":49,"dest_id":49}
+[STWI] [INFO] 2026-01-20 12:02:09 Mapping updated {"object_type":"term","source_id":50,"dest_id":50}
+[STWI] [INFO] 2026-01-20 12:02:10 Mapping updated {"object_type":"term","source_id":51,"dest_id":51}
+[STWI] [INFO] 2026-01-20 12:02:11 Mapping updated {"object_type":"term","source_id":52,"dest_id":52}
+[STWI] [INFO] 2026-01-20 12:02:12 Mapping updated {"object_type":"term","source_id":53,"dest_id":53}
+[STWI] [INFO] 2026-01-20 12:02:12 Processed post {"source_id":37293,"dest_id":50,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
+[STWI] [INFO] 2026-01-20 12:02:12 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37293}}

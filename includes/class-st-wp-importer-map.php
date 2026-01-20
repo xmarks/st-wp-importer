@@ -125,7 +125,7 @@ class St_Wp_Importer_Map {
 	public function get_rows_for_deletion( int $limit = 20 ): array {
 		$limit = max( 1, $limit );
 		$sql   = $this->wpdb->prepare(
-			"SELECT id, source_blog_id, source_object_type, source_id, dest_id FROM {$this->table} WHERE source_object_type IN ('post','attachment') ORDER BY id ASC LIMIT %d",
+			"SELECT id, source_blog_id, source_object_type, source_id, dest_id FROM {$this->table} ORDER BY id ASC LIMIT %d",
 			$limit
 		);
 		return $this->wpdb->get_results( $sql, ARRAY_A ) ?: array();
@@ -147,7 +147,7 @@ class St_Wp_Importer_Map {
 	 * @return int
 	 */
 	public function count_remaining(): int {
-		$count = $this->wpdb->get_var( "SELECT COUNT(*) FROM {$this->table} WHERE source_object_type IN ('post','attachment')" );
+		$count = $this->wpdb->get_var( "SELECT COUNT(*) FROM {$this->table}" );
 		return (int) $count;
 	}
 

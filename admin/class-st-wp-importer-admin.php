@@ -290,7 +290,7 @@ class St_Wp_Importer_Admin {
 		$batch_size = $batch_size > 0 ? min( $batch_size, 50 ) : 20;
 
 		$rows     = $this->map->get_rows_for_deletion( $batch_size );
-		$deleted  = array( 'posts' => 0, 'attachments' => 0 );
+		$deleted  = array( 'posts' => 0, 'attachments' => 0, 'terms' => 0, 'users' => 0 );
 		$errors   = array();
 
 		foreach ( $rows as $row ) {
@@ -303,7 +303,7 @@ class St_Wp_Importer_Admin {
 				'source_id'   => (int) $row['source_id'],
 			);
 
-			if ( 'attachment' === $object_type ) {
+			if ( in_array( $object_type, array( 'attachment', 'attachment_url' ), true ) ) {
 				$result = wp_delete_attachment( $dest_id, true );
 				if ( $result ) {
 					$deleted['attachments']++;
@@ -312,6 +312,36 @@ class St_Wp_Importer_Admin {
 				} else {
 					$errors[] = $context;
 					$this->logger->log( 'ERROR', 'Failed to delete imported attachment', $context );
+				}
+				continue;
+			}
+
+			if ( 'term' === $object_type ) {
+				$term_deleted = wp_delete_term( $dest_id, $this->guess_taxonomy_from_term_id( $dest_id ) );
+				if ( ! is_wp_error( $term_deleted ) ) {
+					$deleted['terms']++;
+					$this->map->delete_row( (int) $row['id'] );
+					$this->logger->log( 'INFO', 'Deleted imported term', $context );
+				} else {
+					$errors[] = $context;
+					$this->logger->log( 'ERROR', 'Failed to delete imported term', $context + array( 'error' => $term_deleted->get_error_message() ) );
+				}
+				continue;
+			}
+
+			if ( 'user' === $object_type ) {
+				if ( get_current_user_id() === $dest_id ) {
+					$this->logger->log( 'ERROR', 'Skipping deletion of current user', $context );
+					continue;
+				}
+				$result = wp_delete_user( $dest_id );
+				if ( $result ) {
+					$deleted['users']++;
+					$this->map->delete_row( (int) $row['id'] );
+					$this->logger->log( 'INFO', 'Deleted imported user', $context );
+				} else {
+					$errors[] = $context;
+					$this->logger->log( 'ERROR', 'Failed to delete imported user', $context );
 				}
 				continue;
 			}
@@ -347,11 +377,25 @@ class St_Wp_Importer_Admin {
 
 		wp_send_json_success(
 			array(
-				'message'   => sprintf( 'Deleted %d posts and %d attachments. Remaining: %d', $deleted['posts'], $deleted['attachments'], $remaining ),
+				'message'   => sprintf( 'Deleted %d posts, %d attachments, %d terms, %d users. Remaining: %d', $deleted['posts'], $deleted['attachments'], $deleted['terms'], $deleted['users'], $remaining ),
 				'deleted'   => $deleted,
 				'remaining' => $remaining,
 			)
 		);
+	}
+
+	/**
+	 * Attempt to guess taxonomy for a term id.
+	 *
+	 * @param int $term_id
+	 * @return string|null
+	 */
+	private function guess_taxonomy_from_term_id( int $term_id ): ?string {
+		$term = get_term( $term_id );
+		if ( $term && ! is_wp_error( $term ) ) {
+			return $term->taxonomy;
+		}
+		return null;
 	}
 
 }

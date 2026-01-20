@@ -199,6 +199,16 @@ class St_Wp_Importer_Importer {
 		$row['post_content'] = $rewrite['content'];
 
 		$author_id = $this->resolve_author( (int) $row['post_author'], $settings, $dry_run );
+		$this->logger->log(
+			'INFO',
+			'Author resolved for post',
+			array(
+				'source_post_id'  => (int) $row['ID'],
+				'source_author'   => (int) $row['post_author'],
+				'dest_author'     => $author_id,
+				'dry_run'         => $dry_run,
+			)
+		);
 
 		$base_post = array(
 			'post_type'      => $post_type,
@@ -214,7 +224,7 @@ class St_Wp_Importer_Importer {
 			'post_date_gmt'  => $row['post_date_gmt'],
 			'post_modified'  => current_time( 'mysql' ),
 			'post_modified_gmt' => current_time( 'mysql', 1 ),
-			'post_author'    => $author_id,
+			'post_author'    => (int) $author_id,
 		);
 
 		$status = 'skipped';
@@ -269,11 +279,33 @@ class St_Wp_Importer_Importer {
 			// Meta import (excluding thumbnail here).
 			$this->import_meta( $dest_id, $meta, $settings, $dry_run );
 
-		// Featured image.
-		$rewrite['attachments_imported'] += $this->maybe_set_featured_image( $dest_id, $meta, $settings, $dry_run );
+			// Featured image.
+			$rewrite['attachments_imported'] += $this->maybe_set_featured_image( $dest_id, $meta, $settings, $dry_run );
 
 			// Taxonomies.
 			$this->import_taxonomies( $dest_id, $source_id, $post_type, $settings );
+
+			// Enforce author after insert/update (some hooks may override).
+			$current_author = (int) get_post_field( 'post_author', $dest_id );
+			if ( $current_author !== $author_id ) {
+				$author_result = wp_update_post(
+					array(
+						'ID'          => $dest_id,
+						'post_author' => $author_id,
+					),
+					true
+				);
+				$this->logger->log(
+					'INFO',
+					'Post author enforced',
+					array(
+						'dest_id'        => $dest_id,
+						'was_author'     => $current_author,
+						'expected_author'=> $author_id,
+						'result'         => is_wp_error( $author_result ) ? $author_result->get_error_message() : 'ok',
+					)
+				);
+			}
 		}
 
 		$this->logger->log(
@@ -301,11 +333,29 @@ class St_Wp_Importer_Importer {
 	 * @param bool  $dry_run
 	 */
 	private function import_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): void {
+		$yoast_enabled = ! empty( $settings['plugin_yoastseo'] );
+		$acf_enabled   = ! empty( $settings['plugin_acf'] );
+		$yoast_keys    = array();
+		foreach ( $meta_rows as $meta_row ) {
+			if ( strpos( $meta_row['meta_key'], '_yoast_wpseo_' ) === 0 ) {
+				$yoast_keys[] = $meta_row;
+			}
+		}
+
 		foreach ( $meta_rows as $meta_row ) {
 			$key   = $meta_row['meta_key'];
 			$value = maybe_unserialize( $meta_row['meta_value'] );
 
 			if ( in_array( $key, array( '_edit_lock', '_edit_last', '_thumbnail_id' ), true ) ) {
+				continue;
+			}
+
+			// Skip Yoast in general meta flow if plugin toggle controls it.
+			if ( $yoast_enabled && strpos( $key, '_yoast_wpseo_' ) === 0 ) {
+				continue;
+			}
+			// Skip ACF meta if toggle is off.
+			if ( ! $acf_enabled && $this->is_acf_meta( $key, $value ) ) {
 				continue;
 			}
 
@@ -324,6 +374,10 @@ class St_Wp_Importer_Importer {
 				'Imported post meta',
 				array( 'dest_id' => $dest_id, 'meta_key' => $key )
 			);
+		}
+
+		if ( $yoast_enabled ) {
+			$this->import_yoast_meta( $dest_id, $yoast_keys, $settings, $dry_run );
 		}
 	}
 
@@ -421,6 +475,10 @@ class St_Wp_Importer_Importer {
 
 			if ( $dest_term && ! is_wp_error( $dest_term ) ) {
 				wp_set_object_terms( $dest_id, array( (int) $dest_term->term_id ), $taxonomy, true );
+				// Map newly created terms for cleanup later.
+				if ( $dest_term && isset( $inserted ) && ! is_wp_error( $inserted ) && isset( $inserted['term_id'] ) ) {
+					$this->map->upsert( (int) $settings['source_blog_id'], 'term', (int) $term['term_id'], (int) $dest_term->term_id );
+				}
 			}
 		}
 	}
@@ -444,6 +502,7 @@ class St_Wp_Importer_Importer {
 		if ( $mapped ) {
 			$user = get_user_by( 'id', $mapped );
 			if ( $user ) {
+				$this->logger->log( 'INFO', 'Resolved author by mapping', array( 'source_user_id' => $source_user_id, 'dest_user_id' => $mapped ) );
 				return (int) $mapped;
 			}
 			$this->logger->log(
@@ -557,5 +616,59 @@ class St_Wp_Importer_Importer {
 		);
 
 		return (int) $new_user_id;
+	}
+
+	/**
+	 * Import Yoast SEO meta keys (controlled by plugin toggle).
+	 *
+	 * @param int   $dest_id
+	 * @param array $meta_rows
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return void
+	 */
+	private function import_yoast_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): void {
+		if ( empty( $meta_rows ) ) {
+			return;
+		}
+
+		// Allow all Yoast keys; could restrict but safer to copy all prefixed entries.
+		foreach ( $meta_rows as $meta_row ) {
+			$key   = $meta_row['meta_key'];
+			$value = maybe_unserialize( $meta_row['meta_value'] );
+
+			if ( $dry_run ) {
+				$this->logger->log(
+					'INFO',
+					'[DRY RUN] Would import Yoast meta',
+					array( 'dest_id' => $dest_id, 'meta_key' => $key )
+				);
+				continue;
+			}
+
+			update_post_meta( $dest_id, $key, $value );
+			$this->logger->log(
+				'INFO',
+				'Imported Yoast meta',
+				array( 'dest_id' => $dest_id, 'meta_key' => $key )
+			);
+		}
+	}
+
+	/**
+	 * Identify ACF meta patterns.
+	 *
+	 * @param string $key
+	 * @param mixed  $value
+	 * @return bool
+	 */
+	private function is_acf_meta( string $key, $value ): bool {
+		if ( strpos( $key, 'field_' ) === 0 ) {
+			return true;
+		}
+		if ( strpos( $key, '_' ) === 0 && is_string( $value ) && strpos( $value, 'field_' ) === 0 ) {
+			return true;
+		}
+		return false;
 	}
 }
