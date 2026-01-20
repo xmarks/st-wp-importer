@@ -111,6 +111,8 @@ class St_Wp_Importer {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-logger.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-map.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-source-db.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-media.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-content.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-importer.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-cron.php';
 
@@ -166,7 +168,9 @@ class St_Wp_Importer {
 		$logger   = new St_Wp_Importer_Logger( $settings );
 		$map      = new St_Wp_Importer_Map( $logger );
 		$source   = new St_Wp_Importer_Source_DB( $logger );
-		$importer = new St_Wp_Importer_Importer( $settings, $state, $logger, $map, $source );
+		$media    = new St_Wp_Importer_Media( $settings, $logger, $map, $source );
+		$content  = new St_Wp_Importer_Content( $logger, $media, $source, $settings );
+		$importer = new St_Wp_Importer_Importer( $settings, $state, $logger, $map, $source, $media, $content );
 		$cron     = new St_Wp_Importer_Cron( $settings, $state, $logger, $importer );
 
 		$plugin_admin = new St_Wp_Importer_Admin(
@@ -191,6 +195,7 @@ class St_Wp_Importer {
 		$this->loader->add_action( 'wp_ajax_stwi_stop_import', $plugin_admin, 'ajax_stop_import' );
 		$this->loader->add_action( 'wp_ajax_stwi_run_batch_now', $plugin_admin, 'ajax_run_batch_now' );
 		$this->loader->add_action( 'wp_ajax_stwi_fetch_logs', $plugin_admin, 'ajax_fetch_logs' );
+		$this->loader->add_action( 'wp_ajax_stwi_delete_imported', $plugin_admin, 'ajax_delete_imported' );
 
 		// Cron hook for batch runner.
 		$this->loader->add_action( 'stwi_run_batch', $cron, 'handle_scheduled_batch' );

@@ -277,4 +277,81 @@ class St_Wp_Importer_Admin {
 		);
 	}
 
+	/**
+	 * AJAX: Delete imported content using mapping table.
+	 */
+	public function ajax_delete_imported() {
+		check_ajax_referer( 'stwi_admin_nonce', 'nonce' );
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( array( 'message' => 'Unauthorized' ) );
+		}
+
+		$batch_size = isset( $_POST['batch_size'] ) ? absint( $_POST['batch_size'] ) : 20;
+		$batch_size = $batch_size > 0 ? min( $batch_size, 50 ) : 20;
+
+		$rows     = $this->map->get_rows_for_deletion( $batch_size );
+		$deleted  = array( 'posts' => 0, 'attachments' => 0 );
+		$errors   = array();
+
+		foreach ( $rows as $row ) {
+			$dest_id    = (int) $row['dest_id'];
+			$object_type= $row['source_object_type'];
+			$context    = array(
+				'mapping_id'  => (int) $row['id'],
+				'object_type' => $object_type,
+				'dest_id'     => $dest_id,
+				'source_id'   => (int) $row['source_id'],
+			);
+
+			if ( 'attachment' === $object_type ) {
+				$result = wp_delete_attachment( $dest_id, true );
+				if ( $result ) {
+					$deleted['attachments']++;
+					$this->map->delete_row( (int) $row['id'] );
+					$this->logger->log( 'INFO', 'Deleted imported attachment', $context );
+				} else {
+					$errors[] = $context;
+					$this->logger->log( 'ERROR', 'Failed to delete imported attachment', $context );
+				}
+				continue;
+			}
+
+			$result = wp_delete_post( $dest_id, true );
+			if ( $result ) {
+				$deleted['posts']++;
+				$this->map->delete_row( (int) $row['id'] );
+				$this->logger->log( 'INFO', 'Deleted imported post', $context );
+			} else {
+				$errors[] = $context;
+				$this->logger->log( 'ERROR', 'Failed to delete imported post', $context );
+			}
+		}
+
+		$remaining = $this->map->count_remaining();
+		if ( 0 === $remaining ) {
+			$this->map->delete_all();
+			$this->state->reset();
+			$this->logger->truncate();
+			$this->logger->log( 'INFO', 'Importer state reset (mapping cleared, log truncated).' );
+		}
+
+		if ( ! empty( $errors ) ) {
+			wp_send_json_error(
+				array(
+					'message'   => 'Some items failed to delete. Check logs.',
+					'deleted'   => $deleted,
+					'remaining' => $remaining,
+				)
+			);
+		}
+
+		wp_send_json_success(
+			array(
+				'message'   => sprintf( 'Deleted %d posts and %d attachments. Remaining: %d', $deleted['posts'], $deleted['attachments'], $remaining ),
+				'deleted'   => $deleted,
+				'remaining' => $remaining,
+			)
+		);
+	}
+
 }

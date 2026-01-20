@@ -101,4 +101,48 @@
 			});
 	});
 
+	function deleteBatch() {
+		const statusEl = $('#stwi-delete-status');
+		statusEl.text('Deleting imported content...');
+		$('#stwi-delete-imported').prop('disabled', true);
+
+		const data = {
+			action: 'stwi_delete_imported',
+			nonce: stwiAdmin.nonce,
+			batch_size: 20
+		};
+
+		$.post(stwiAdmin.ajaxUrl, data)
+			.done(function(response){
+				if (response.success) {
+					const remaining = response.data && response.data.remaining !== undefined ? response.data.remaining : '?';
+					statusEl.text(response.data.message || 'Batch deleted.');
+					if (remaining > 0) {
+						if (confirm(`Remaining ${remaining} items. Run another delete batch?`)) {
+							deleteBatch();
+							return;
+						}
+						$('#stwi-delete-imported').prop('disabled', false);
+					} else {
+						$('#stwi-delete-imported').prop('disabled', false);
+					}
+				} else {
+					statusEl.text((response.data && response.data.message) ? response.data.message : 'Delete failed. Check logs.');
+					$('#stwi-delete-imported').prop('disabled', false);
+				}
+			})
+			.fail(function(){
+				statusEl.text('AJAX request failed. Check logs.');
+				$('#stwi-delete-imported').prop('disabled', false);
+			});
+	}
+
+	$('#stwi-delete-imported').on('click', function(e){
+		e.preventDefault();
+		if (!confirm('This will DELETE content imported via ST WI (posts + attachments) using the mapping table. This cannot be undone. Continue?')) {
+			return;
+		}
+		deleteBatch();
+	});
+
 })( jQuery );

@@ -109,4 +109,12 @@ class St_Wp_Importer_Logger {
 		// Attempt to create the file.
 		@touch( $this->log_file ); // phpcs:ignore
 	}
+
+	/**
+	 * Truncate the log file.
+	 */
+	public function truncate(): void {
+		$this->ensure_file();
+		file_put_contents( $this->log_file, '' );
+	}
 }

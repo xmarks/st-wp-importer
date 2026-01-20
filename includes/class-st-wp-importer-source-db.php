@@ -81,4 +81,128 @@ class St_Wp_Importer_Source_DB {
 			'count'   => (int) $count,
 		);
 	}
+
+	/**
+	 * Compute table names based on blog id/prefix.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	public function get_tables( array $settings ): array {
+		$prefix  = $settings['source_table_prefix'] ?? 'wp_';
+		$blog_id = (int) ( $settings['source_blog_id'] ?? 1 );
+		$base    = $prefix;
+		if ( $blog_id > 1 ) {
+			$base = $prefix . $blog_id . '_';
+		}
+		return array(
+			'posts'             => $base . 'posts',
+			'postmeta'          => $base . 'postmeta',
+			'terms'             => $prefix . 'terms',
+			'term_taxonomy'     => $prefix . 'term_taxonomy',
+			'term_relationships'=> $base . 'term_relationships',
+		);
+	}
+
+	/**
+	 * Fetch posts of a type after cursor.
+	 *
+	 * @param string $post_type
+	 * @param int    $after_id
+	 * @param int    $limit
+	 * @param array  $settings
+	 * @return array
+	 */
+	public function fetch_posts( string $post_type, int $after_id, int $limit, array $settings ): array {
+		$db      = $this->connect( $settings );
+		$tables  = $this->get_tables( $settings );
+		$limit   = max( 1, $limit );
+		$sql     = $db->prepare(
+			"SELECT * FROM {$tables['posts']} WHERE post_type = %s AND ID > %d AND post_status NOT IN ('auto-draft','trash') ORDER BY ID ASC LIMIT %d",
+			$post_type,
+			$after_id,
+			$limit
+		);
+		return $db->get_results( $sql, ARRAY_A ) ?: array();
+	}
+
+	/**
+	 * Fetch meta for a post.
+	 *
+	 * @param int   $post_id
+	 * @param array $settings
+	 * @return array
+	 */
+	public function fetch_meta( int $post_id, array $settings ): array {
+		$db     = $this->connect( $settings );
+		$tables = $this->get_tables( $settings );
+		$sql    = $db->prepare( "SELECT meta_key, meta_value FROM {$tables['postmeta']} WHERE post_id = %d", $post_id );
+		return $db->get_results( $sql, ARRAY_A ) ?: array();
+	}
+
+	/**
+	 * Fetch post + meta by ID.
+	 *
+	 * @param int   $post_id
+	 * @param array $settings
+	 * @return array { post: array|null, meta: array }
+	 */
+	public function get_post_with_meta( int $post_id, array $settings ): array {
+		$db     = $this->connect( $settings );
+		$tables = $this->get_tables( $settings );
+		$sql    = $db->prepare( "SELECT * FROM {$tables['posts']} WHERE ID = %d", $post_id );
+		$post   = $db->get_row( $sql, ARRAY_A );
+		$meta   = $this->fetch_meta( $post_id, $settings );
+		return array(
+			'post' => $post,
+			'meta' => $meta,
+		);
+	}
+
+	/**
+	 * Find source attachment id by _wp_attached_file path.
+	 *
+	 * @param string $attached_file
+	 * @param array  $settings
+	 * @return int|null
+	 */
+	public function find_attachment_id_by_file( string $attached_file, array $settings ): ?int {
+		$db     = $this->connect( $settings );
+		$tables = $this->get_tables( $settings );
+		$sql    = $db->prepare(
+			"SELECT post_id FROM {$tables['postmeta']} WHERE meta_key = '_wp_attached_file' AND meta_value = %s LIMIT 1",
+			$attached_file
+		);
+		$id = $db->get_var( $sql );
+		if ( $id ) {
+			return (int) $id;
+		}
+		return null;
+	}
+
+	/**
+	 * Fetch terms for a post across taxonomies.
+	 *
+	 * @param int   $post_id
+	 * @param array $taxonomies
+	 * @param array $settings
+	 * @return array
+	 */
+	public function fetch_terms_for_post( int $post_id, array $taxonomies, array $settings ): array {
+		if ( empty( $taxonomies ) ) {
+			return array();
+		}
+		$db        = $this->connect( $settings );
+		$tables    = $this->get_tables( $settings );
+		$in        = implode( "','", array_map( 'esc_sql', $taxonomies ) );
+		$sql       = $db->prepare(
+			"SELECT t.term_id, t.name, t.slug, tt.taxonomy
+			FROM {$tables['term_relationships']} tr
+			INNER JOIN {$tables['term_taxonomy']} tt ON tr.term_taxonomy_id = tt.term_taxonomy_id
+			INNER JOIN {$tables['terms']} t ON t.term_id = tt.term_id
+			WHERE tr.object_id = %d AND tt.taxonomy IN ('$in')",
+			$post_id
+		);
+		return $db->get_results( $sql, ARRAY_A ) ?: array();
+	}
 }

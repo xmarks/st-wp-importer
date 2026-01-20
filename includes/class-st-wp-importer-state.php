@@ -105,4 +105,15 @@ class St_Wp_Importer_State {
 			)
 		);
 	}
+
+	/**
+	 * Reset state to defaults.
+	 *
+	 * @return array
+	 */
+	public function reset(): array {
+		$defaults = $this->defaults();
+		update_option( self::OPTION_KEY, $defaults );
+		return $defaults;
+	}
 }

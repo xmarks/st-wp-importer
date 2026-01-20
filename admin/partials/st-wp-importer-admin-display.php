@@ -185,5 +185,13 @@
 			<textarea id="stwi-log-viewer" readonly rows="16" class="large-text code"><?php echo esc_textarea( $log_tail ); ?></textarea>
 			<p><button type="button" class="button" id="stwi-refresh-log">Refresh logs</button></p>
 		</div>
+
+		<div class="stwi-card stwi-danger-zone">
+			<h2>Danger Zone</h2>
+			<p class="description"><strong>Deletes only content imported via this plugin (using the mapping table), even if edited after import.</strong> Cannot be undone. Runs in small batches.</p>
+			<button type="button" class="button stwi-danger-button" id="stwi-delete-imported">Delete Imported Content</button>
+			<p class="description">Processes items one batch at a time (posts and attachments). Click again if items remain. When nothing remains, importer state (cursor/stats), mapping table, and log are reset.</p>
+			<div id="stwi-delete-status"></div>
+		</div>
 	</div>
 </div>

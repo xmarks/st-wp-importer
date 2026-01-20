@@ -25,6 +25,22 @@
 	margin-bottom: 8px;
 }
 
+.stwi-danger-zone {
+	border-color: #d63638;
+}
+
+.stwi-danger-button {
+	background: #d63638;
+	border-color: #b32d2e;
+	color: #fff;
+}
+
+.stwi-danger-button:hover {
+	background: #b32d2e;
+	border-color: #8a2424;
+	color: #fff;
+}
+
 @media (min-width: 960px) {
 	.stwi-wrap .stwi-grid {
 		grid-template-columns: 2fr 1.2fr;

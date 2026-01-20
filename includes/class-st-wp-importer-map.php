@@ -115,4 +115,46 @@ class St_Wp_Importer_Map {
 			)
 		);
 	}
+
+	/**
+	 * Fetch mapping rows for deletion in batches.
+	 *
+	 * @param int $limit
+	 * @return array
+	 */
+	public function get_rows_for_deletion( int $limit = 20 ): array {
+		$limit = max( 1, $limit );
+		$sql   = $this->wpdb->prepare(
+			"SELECT id, source_blog_id, source_object_type, source_id, dest_id FROM {$this->table} WHERE source_object_type IN ('post','attachment') ORDER BY id ASC LIMIT %d",
+			$limit
+		);
+		return $this->wpdb->get_results( $sql, ARRAY_A ) ?: array();
+	}
+
+	/**
+	 * Delete a mapping row by id.
+	 *
+	 * @param int $id
+	 * @return void
+	 */
+	public function delete_row( int $id ): void {
+		$this->wpdb->delete( $this->table, array( 'id' => $id ) );
+	}
+
+	/**
+	 * Count remaining mapped objects (post/attachment).
+	 *
+	 * @return int
+	 */
+	public function count_remaining(): int {
+		$count = $this->wpdb->get_var( "SELECT COUNT(*) FROM {$this->table} WHERE source_object_type IN ('post','attachment')" );
+		return (int) $count;
+	}
+
+	/**
+	 * Delete all mappings.
+	 */
+	public function delete_all(): void {
+		$this->wpdb->query( "TRUNCATE TABLE {$this->table}" ); // phpcs:ignore
+	}
 }
