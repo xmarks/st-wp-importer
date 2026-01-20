@@ -335,10 +335,15 @@ class St_Wp_Importer_Importer {
 	private function import_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): void {
 		$yoast_enabled = ! empty( $settings['plugin_yoastseo'] );
 		$acf_enabled   = ! empty( $settings['plugin_acf'] );
+		$permalink_enabled = ! empty( $settings['plugin_permalink_manager'] );
 		$yoast_keys    = array();
+		$permalink_keys= array();
 		foreach ( $meta_rows as $meta_row ) {
 			if ( strpos( $meta_row['meta_key'], '_yoast_wpseo_' ) === 0 ) {
 				$yoast_keys[] = $meta_row;
+			}
+			if ( $this->is_permalink_manager_meta( $meta_row['meta_key'] ) ) {
+				$permalink_keys[] = $meta_row;
 			}
 		}
 
@@ -352,6 +357,10 @@ class St_Wp_Importer_Importer {
 
 			// Skip Yoast in general meta flow if plugin toggle controls it.
 			if ( $yoast_enabled && strpos( $key, '_yoast_wpseo_' ) === 0 ) {
+				continue;
+			}
+			// Skip Permalink Manager meta if toggle is off.
+			if ( ! $permalink_enabled && $this->is_permalink_manager_meta( $key ) ) {
 				continue;
 			}
 			// Skip ACF meta if toggle is off.
@@ -378,6 +387,9 @@ class St_Wp_Importer_Importer {
 
 		if ( $yoast_enabled ) {
 			$this->import_yoast_meta( $dest_id, $yoast_keys, $settings, $dry_run );
+		}
+		if ( $permalink_enabled ) {
+			$this->import_permalink_meta( $dest_id, $permalink_keys, $settings, $dry_run );
 		}
 	}
 
@@ -656,6 +668,41 @@ class St_Wp_Importer_Importer {
 	}
 
 	/**
+	 * Import Permalink Manager Pro meta keys (controlled by plugin toggle).
+	 *
+	 * @param int   $dest_id
+	 * @param array $meta_rows
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return void
+	 */
+	private function import_permalink_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): void {
+		if ( empty( $meta_rows ) ) {
+			return;
+		}
+		foreach ( $meta_rows as $meta_row ) {
+			$key   = $meta_row['meta_key'];
+			$value = maybe_unserialize( $meta_row['meta_value'] );
+
+			if ( $dry_run ) {
+				$this->logger->log(
+					'INFO',
+					'[DRY RUN] Would import Permalink Manager meta',
+					array( 'dest_id' => $dest_id, 'meta_key' => $key, 'value' => $value )
+				);
+				continue;
+			}
+
+			update_post_meta( $dest_id, $key, $value );
+			$this->logger->log(
+				'INFO',
+				'Imported Permalink Manager meta',
+				array( 'dest_id' => $dest_id, 'meta_key' => $key, 'value' => $value )
+			);
+		}
+	}
+
+	/**
 	 * Identify ACF meta patterns.
 	 *
 	 * @param string $key
@@ -667,6 +714,22 @@ class St_Wp_Importer_Importer {
 			return true;
 		}
 		if ( strpos( $key, '_' ) === 0 && is_string( $value ) && strpos( $value, 'field_' ) === 0 ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Identify Permalink Manager Pro meta patterns.
+	 *
+	 * @param string $key
+	 * @return bool
+	 */
+	private function is_permalink_manager_meta( string $key ): bool {
+		if ( strpos( $key, 'permalink_manager' ) === 0 ) {
+			return true;
+		}
+		if ( strpos( $key, '_permalink_manager' ) === 0 ) {
 			return true;
 		}
 		return false;

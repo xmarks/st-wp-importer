@@ -10,6 +10,9 @@
 - Danger zone now deletes mapped content and, when empty, resets mapping/state/log.
 - Yoast SEO toggle added; Yoast meta imported only when enabled, with verbose logging. Other plugin toggles (Hreflang, Permalink Manager Pro, Redirection) added (placeholders for now).
 - ACF toggle added (default on); ACF meta included unless disabled (we already copy all meta except edit locks/thumbnail/Yoast when off).
+- Permalink Manager Pro meta handled when toggle on (copies meta keys prefixed with `permalink_manager` / `_permalink_manager` with verbose logging).
+- PublishPress Authors note: plugin currently only present to avoid theme errors; no author box migration yet. Authors were not deleted there previously; consider cleanup/mapping if kept enabled.
+- Redirection: excluded from migration scope; checkbox removed; if needed later, import redirects via JSON export or DB, map as `redirect` for cleanup.
 
 ## Outstanding / Next
 - Plugin metadata migrations:

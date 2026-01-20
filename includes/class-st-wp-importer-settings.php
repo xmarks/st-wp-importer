@@ -32,8 +32,8 @@ class St_Wp_Importer_Settings {
 			'plugin_acf'         => 1,
 			'plugin_hreflang'     => 1,
 			'plugin_permalink_manager' => 1,
-			'plugin_redirection'  => 1,
-			'import_scope'        => array(
+			// Redirection excluded from migration scope.
+		'import_scope'        => array(
 				array(
 					'post_type'  => 'post',
 					'taxonomies' => array( 'category', 'post_tag', 'topic', 'industry' ),
@@ -135,7 +135,7 @@ class St_Wp_Importer_Settings {
 		$out['plugin_acf']           = isset( $input['plugin_acf'] ) ? 1 : 0;
 		$out['plugin_hreflang']      = isset( $input['plugin_hreflang'] ) ? 1 : 0;
 		$out['plugin_permalink_manager'] = isset( $input['plugin_permalink_manager'] ) ? 1 : 0;
-		$out['plugin_redirection']   = isset( $input['plugin_redirection'] ) ? 1 : 0;
+		// Redirection intentionally excluded.
 
 		$raw_scope            = $input['import_scope'] ?? array();
 		$out['import_scope']  = $this->sanitize_scope( $raw_scope );

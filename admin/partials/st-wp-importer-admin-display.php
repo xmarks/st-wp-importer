@@ -107,7 +107,6 @@
 							<p><label><input name="plugin_acf" type="checkbox" value="1" <?php checked( $settings['plugin_acf'], 1 ); ?>> Include ACF meta</label></p>
 							<p><label><input name="plugin_hreflang" type="checkbox" value="1" <?php checked( $settings['plugin_hreflang'], 1 ); ?>> Include Hreflang Manager meta (hreflang-*)</label></p>
 							<p><label><input name="plugin_permalink_manager" type="checkbox" value="1" <?php checked( $settings['plugin_permalink_manager'], 1 ); ?>> Include Permalink Manager Pro meta</label></p>
-							<p><label><input name="plugin_redirection" type="checkbox" value="1" <?php checked( $settings['plugin_redirection'], 1 ); ?>> Include Redirection data (placeholder)</label></p>
 							<p class="description">Toggle plugin-specific migrations. Logs remain verbose for debugging.</p>
 						</td>
 					</tr>
