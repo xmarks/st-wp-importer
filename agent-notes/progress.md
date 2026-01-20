@@ -13,6 +13,9 @@
 - Permalink Manager Pro meta handled when toggle on (copies meta keys prefixed with `permalink_manager` / `_permalink_manager` with verbose logging).
 - PublishPress Authors note: plugin currently only present to avoid theme errors; no author box migration yet. Authors were not deleted there previously; consider cleanup/mapping if kept enabled.
 - Redirection: excluded from migration scope; checkbox removed; if needed later, import redirects via JSON export or DB, map as `redirect` for cleanup.
+- Logging is extremely verbose across author resolution, post upserts, meta imports (Yoast/ACF/Permalink), attachments, terms, and deletion/reset flows.
+- Dry runs do not advance cursors/stats/log; state reset and log truncation work via Danger Zone when mappings are cleared.
+- Authors: resolved by mapping → username → email → create; assignment enforced post-insert and logged. PublishPress Authors can interfere if stale data remains.
 
 ## Outstanding / Next
 - Plugin metadata migrations:
@@ -24,6 +27,10 @@
 - Term meta migrations (Yoast primary terms etc.) if required.
 - Additional ACF file/image fields auditing (ACF JSON present).
 - Optional “reset state only” control (without deleting content).
+- Meta cleanup/decisions:
+  - `_aioseo_*` currently imported; likely unnecessary (plugin not in scope) – consider excluding these keys.
+  - Hreflang plugin may be removed; consider skipping `hreflang-*` meta when/if plugin is dropped.
+  - Yoast socials: ensure social OG/Twitter image/title/description meta gets copied if present; verify whether any values exist on source (may be empty).
 
 ## CSV (Posts-Export-2026-January-20-0953.csv) meta highlights
 - Yoast: `_yoast_wpseo_focuskw`, `_yoast_wpseo_title`, `_yoast_wpseo_metadesc`, `_yoast_wpseo_primary_topic`, `_yoast_wpseo_primary_industry`, `_yoast_wpseo_canonical`, `_yoast_wpseo_content_score`, `_yoast_wpseo_linkdex`, `_yoast_wpseo_focuskeywords`, `_yoast_wpseo_keywordsynonyms`, `_yoast_wpseo_wordproof_timestamp`.
