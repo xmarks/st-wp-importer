@@ -210,9 +210,24 @@ class St_Wp_Importer_Importer {
 			)
 		);
 
+		// Normalize status: if source status is not a core/registered status, set to private for review.
+		$allowed_statuses = get_post_stati();
+		$post_status      = $row['post_status'];
+		if ( ! in_array( $post_status, $allowed_statuses, true ) ) {
+			$this->logger->log(
+				'INFO',
+				'Normalizing non-core status to private',
+				array(
+					'source_id' => $source_id,
+					'status'    => $post_status,
+				)
+			);
+			$post_status = 'private';
+		}
+
 		$base_post = array(
 			'post_type'      => $post_type,
-			'post_status'    => $row['post_status'],
+			'post_status'    => $post_status,
 			'post_title'     => $row['post_title'],
 			'post_content'   => $row['post_content'],
 			'post_excerpt'   => $row['post_excerpt'],
@@ -357,6 +372,21 @@ class St_Wp_Importer_Importer {
 
 			// Skip Yoast in general meta flow if plugin toggle controls it.
 			if ( $yoast_enabled && strpos( $key, '_yoast_wpseo_' ) === 0 ) {
+				continue;
+			}
+			// Skip AIOSEO meta (not in scope).
+			if ( $this->is_aioseo_meta( $key ) ) {
+				$this->logger->log( 'INFO', 'Skipped AIOSEO meta', array( 'dest_id' => $dest_id, 'meta_key' => $key ) );
+				continue;
+			}
+			// Skip hreflang meta (plugin may be removed).
+			if ( $this->is_hreflang_meta( $key ) ) {
+				$this->logger->log( 'INFO', 'Skipped hreflang meta', array( 'dest_id' => $dest_id, 'meta_key' => $key ) );
+				continue;
+			}
+			// Skip Relevanssi meta (plugin not in scope).
+			if ( $this->is_relevanssi_meta( $key ) ) {
+				$this->logger->log( 'INFO', 'Skipped Relevanssi meta', array( 'dest_id' => $dest_id, 'meta_key' => $key ) );
 				continue;
 			}
 			// Skip Permalink Manager meta if toggle is off.
@@ -644,9 +674,86 @@ class St_Wp_Importer_Importer {
 			return;
 		}
 
-		// Allow all Yoast keys; could restrict but safer to copy all prefixed entries.
+		$meta_lookup = array();
+		foreach ( $meta_rows as $meta_row ) {
+			$meta_lookup[ $meta_row['meta_key'] ] = maybe_unserialize( $meta_row['meta_value'] );
+		}
+
+		$social_sets = array(
+			array( 'url_key' => '_yoast_wpseo_opengraph-image', 'id_key' => '_yoast_wpseo_opengraph-image-id' ),
+			array( 'url_key' => '_yoast_wpseo_twitter-image',   'id_key' => '_yoast_wpseo_twitter-image-id' ),
+		);
+		$skip_keys = array();
+
+		foreach ( $social_sets as $set ) {
+			$url_key = $set['url_key'];
+			$id_key  = $set['id_key'];
+			$url_val = $meta_lookup[ $url_key ] ?? '';
+			$id_val  = isset( $meta_lookup[ $id_key ] ) ? (int) $meta_lookup[ $id_key ] : 0;
+
+			if ( empty( $url_val ) && empty( $id_val ) ) {
+				continue;
+			}
+
+			$skip_keys[] = $url_key;
+			$skip_keys[] = $id_key;
+
+			if ( $dry_run ) {
+				$this->logger->log(
+					'INFO',
+					'[DRY RUN] Would import Yoast social image',
+					array(
+						'dest_id'   => $dest_id,
+						'url_key'   => $url_key,
+						'url_val'   => $url_val,
+						'id_key'    => $id_key,
+						'id_val'    => $id_val,
+					)
+				);
+				continue;
+			}
+
+			$new_id  = null;
+			$new_url = '';
+
+			if ( $id_val ) {
+				$new_id = $this->media->import_attachment_by_id( $id_val, $settings, false );
+				if ( $new_id ) {
+					$new_url = wp_get_attachment_url( $new_id );
+				}
+			} elseif ( $url_val ) {
+				$new_id = $this->media->import_attachment_from_url( $url_val, $settings, false );
+				if ( $new_id ) {
+					$new_url = wp_get_attachment_url( $new_id );
+				}
+			}
+
+			if ( $new_url ) {
+				update_post_meta( $dest_id, $url_key, $new_url );
+			}
+			if ( $new_id ) {
+				update_post_meta( $dest_id, $id_key, $new_id );
+			}
+
+			$this->logger->log(
+				'INFO',
+				'Imported Yoast social image',
+				array(
+					'dest_id'   => $dest_id,
+					'url_key'   => $url_key,
+					'url_val'   => $new_url ?: $url_val,
+					'id_key'    => $id_key,
+					'id_val'    => $new_id ?: $id_val,
+				)
+			);
+		}
+
+		// Allow all other Yoast keys (excluding handled social keys).
 		foreach ( $meta_rows as $meta_row ) {
 			$key   = $meta_row['meta_key'];
+			if ( in_array( $key, $skip_keys, true ) ) {
+				continue;
+			}
 			$value = maybe_unserialize( $meta_row['meta_value'] );
 
 			if ( $dry_run ) {
@@ -733,5 +840,17 @@ class St_Wp_Importer_Importer {
 			return true;
 		}
 		return false;
+	}
+
+	private function is_aioseo_meta( string $key ): bool {
+		return ( strpos( $key, '_aioseo_' ) === 0 );
+	}
+
+	private function is_hreflang_meta( string $key ): bool {
+		return ( strpos( $key, 'hreflang-' ) === 0 );
+	}
+
+	private function is_relevanssi_meta( string $key ): bool {
+		return ( strpos( $key, '_relevanssi' ) === 0 );
 	}
 }

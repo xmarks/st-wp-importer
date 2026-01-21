@@ -1,434 +1,375 @@
-[STWI] [INFO] 2026-01-20 12:46:21 Importer state reset (mapping cleared, log truncated).
-[STWI] [INFO] 2026-01-20 13:25:29 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":[],"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:25:29 Fetched posts for type {"post_type":"post","from_id":0,"limit":1,"found":1}
-[STWI] [INFO] 2026-01-20 13:25:31 Mapping updated {"object_type":"user","source_id":646,"dest_id":10}
-[STWI] [INFO] 2026-01-20 13:25:31 Created author user {"source_user_id":646,"dest_user_id":10,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
-[STWI] [INFO] 2026-01-20 13:25:31 Author resolved for post {"source_post_id":37293,"source_author":646,"dest_author":10,"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:25:31 Upserting post {"source_id":37293,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 13:25:33 Mapping updated {"object_type":"post","source_id":37293,"dest_id":57}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 13:25:33 Imported post meta {"dest_id":57,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 13:25:34 Imported post meta {"dest_id":57,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 13:25:35 Imported post meta {"dest_id":57,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported post meta {"dest_id":57,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported post meta {"dest_id":57,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported post meta {"dest_id":57,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported post meta {"dest_id":57,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported post meta {"dest_id":57,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 13:25:36 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 13:25:37 Imported Yoast meta {"dest_id":57,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 13:25:37 Downloading attachment {"source_id":36282,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 13:25:39 Mapping updated {"object_type":"attachment","source_id":36282,"dest_id":58}
-[STWI] [INFO] 2026-01-20 13:25:39 Imported attachment {"source_id":36282,"dest_id":58,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled"}
-[STWI] [INFO] 2026-01-20 13:25:40 Mapping updated {"object_type":"term","source_id":45,"dest_id":65}
-[STWI] [INFO] 2026-01-20 13:25:41 Mapping updated {"object_type":"term","source_id":46,"dest_id":66}
-[STWI] [INFO] 2026-01-20 13:25:42 Mapping updated {"object_type":"term","source_id":47,"dest_id":67}
-[STWI] [INFO] 2026-01-20 13:25:43 Mapping updated {"object_type":"term","source_id":48,"dest_id":68}
-[STWI] [INFO] 2026-01-20 13:25:44 Mapping updated {"object_type":"term","source_id":49,"dest_id":69}
-[STWI] [INFO] 2026-01-20 13:25:45 Mapping updated {"object_type":"term","source_id":50,"dest_id":70}
-[STWI] [INFO] 2026-01-20 13:25:46 Mapping updated {"object_type":"term","source_id":51,"dest_id":71}
-[STWI] [INFO] 2026-01-20 13:25:47 Mapping updated {"object_type":"term","source_id":52,"dest_id":72}
-[STWI] [INFO] 2026-01-20 13:25:48 Mapping updated {"object_type":"term","source_id":53,"dest_id":73}
-[STWI] [INFO] 2026-01-20 13:25:48 Processed post {"source_id":37293,"dest_id":57,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
-[STWI] [INFO] 2026-01-20 13:25:48 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37293}}
-[STWI] [INFO] 2026-01-20 13:31:28 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37293},"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:31:28 Fetched posts for type {"post_type":"post","from_id":37293,"limit":1,"found":1}
-[STWI] [INFO] 2026-01-20 13:31:28 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08"}
-[STWI] [INFO] 2026-01-20 13:31:29 Mapping updated {"object_type":"attachment_url","source_id":2700765324,"dest_id":59}
-[STWI] [INFO] 2026-01-20 13:31:29 Imported attachment {"source_id":0,"dest_id":59,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08","post_title":"SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:29 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","path":"2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:29 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03"}
-[STWI] [INFO] 2026-01-20 13:31:30 Mapping updated {"object_type":"attachment_url","source_id":1305117766,"dest_id":60}
-[STWI] [INFO] 2026-01-20 13:31:30 Imported attachment {"source_id":0,"dest_id":60,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03","post_title":"Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:30 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","path":"2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:30 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05"}
-[STWI] [INFO] 2026-01-20 13:31:31 Mapping updated {"object_type":"attachment_url","source_id":1741654779,"dest_id":61}
-[STWI] [INFO] 2026-01-20 13:31:31 Imported attachment {"source_id":0,"dest_id":61,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05","post_title":"SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:31 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","path":"2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
-[STWI] [INFO] 2026-01-20 13:31:32 Mapping updated {"object_type":"user","source_id":642,"dest_id":11}
-[STWI] [INFO] 2026-01-20 13:31:32 Created author user {"source_user_id":642,"dest_user_id":11,"user_login":"michaelwhite","user_email":"mwhite@gpstrategies.com"}
-[STWI] [INFO] 2026-01-20 13:31:32 Author resolved for post {"source_post_id":37294,"source_author":642,"dest_author":11,"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:31:32 Upserting post {"source_id":37294,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 13:31:34 Mapping updated {"object_type":"post","source_id":37294,"dest_id":62}
-[STWI] [INFO] 2026-01-20 13:31:34 Imported post meta {"dest_id":62,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 13:31:34 Imported post meta {"dest_id":62,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 13:31:34 Imported post meta {"dest_id":62,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 13:31:35 Imported post meta {"dest_id":62,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 13:31:36 Imported post meta {"dest_id":62,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 13:31:37 Imported post meta {"dest_id":62,"meta_key":"align_content"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_align_content"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"overlay_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_overlay_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"text_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_text_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"background_image"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_background_image"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"dots_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_dots_color"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"company_logo"}
-[STWI] [INFO] 2026-01-20 13:31:38 Imported post meta {"dest_id":62,"meta_key":"_company_logo"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"image_style"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"_image_style"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"border_radius"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"_border_radius"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"show_list_of_content"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"_show_list_of_content"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"link_items"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported post meta {"dest_id":62,"meta_key":"_link_items"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 13:31:39 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 13:31:40 Imported Yoast meta {"dest_id":62,"meta_key":"_yoast_wpseo_primary_category"}
-[STWI] [INFO] 2026-01-20 13:31:40 Downloading attachment {"source_id":36285,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/feature-blog-migrating-away-Oracle-UPK-07.15.20.jpg","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 13:31:42 Mapping updated {"object_type":"attachment","source_id":36285,"dest_id":63}
-[STWI] [INFO] 2026-01-20 13:31:42 Imported attachment {"source_id":36285,"dest_id":63,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/feature-blog-migrating-away-Oracle-UPK-07.15.20.jpg","subdir":"\/2023\/02","post_title":"feature-blog-migrating-away-Oracle-UPK-07.15.20"}
-[STWI] [INFO] 2026-01-20 13:31:44 Processed post {"source_id":37294,"dest_id":62,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":4}
-[STWI] [INFO] 2026-01-20 13:31:44 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37294}}
-[STWI] [INFO] 2026-01-20 13:39:00 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37294},"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:39:00 Fetched posts for type {"post_type":"post","from_id":37294,"limit":1,"found":1}
-[STWI] [INFO] 2026-01-20 13:39:00 Resolved author by mapping {"source_user_id":646,"dest_user_id":10}
-[STWI] [INFO] 2026-01-20 13:39:00 Author resolved for post {"source_post_id":37295,"source_author":646,"dest_author":10,"dry_run":false}
-[STWI] [INFO] 2026-01-20 13:39:00 Upserting post {"source_id":37295,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 13:39:02 Mapping updated {"object_type":"post","source_id":37295,"dest_id":64}
-[STWI] [INFO] 2026-01-20 13:39:02 Imported post meta {"dest_id":64,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 13:39:03 Imported post meta {"dest_id":64,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 13:39:04 Imported post meta {"dest_id":64,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"align_content"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"_align_content"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"overlay_color"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"_overlay_color"}
-[STWI] [INFO] 2026-01-20 13:39:05 Imported post meta {"dest_id":64,"meta_key":"text_color"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"_text_color"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"background_image"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"_background_image"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"dots_color"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"_dots_color"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"company_logo"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"_company_logo"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"image_style"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"_image_style"}
-[STWI] [INFO] 2026-01-20 13:39:06 Imported post meta {"dest_id":64,"meta_key":"border_radius"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported post meta {"dest_id":64,"meta_key":"_border_radius"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported post meta {"dest_id":64,"meta_key":"show_list_of_content"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported post meta {"dest_id":64,"meta_key":"_show_list_of_content"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported post meta {"dest_id":64,"meta_key":"link_items"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported post meta {"dest_id":64,"meta_key":"_link_items"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 13:39:07 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 13:39:08 Imported Yoast meta {"dest_id":64,"meta_key":"_yoast_wpseo_primary_category"}
-[STWI] [INFO] 2026-01-20 13:39:08 Downloading attachment {"source_id":36289,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled-1.jpeg","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 13:39:10 Mapping updated {"object_type":"attachment","source_id":36289,"dest_id":65}
-[STWI] [INFO] 2026-01-20 13:39:11 Imported attachment {"source_id":36289,"dest_id":65,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled"}
-[STWI] [INFO] 2026-01-20 13:39:12 Processed post {"source_id":37295,"dest_id":64,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":1}
-[STWI] [INFO] 2026-01-20 13:39:13 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37295}}
-[STWI] [INFO] 2026-01-20 15:56:33 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37295},"dry_run":false}
-[STWI] [INFO] 2026-01-20 15:56:34 Fetched posts for type {"post_type":"post","from_id":37295,"limit":1,"found":1}
-[STWI] [INFO] 2026-01-20 15:56:34 Resolved author by mapping {"source_user_id":646,"dest_user_id":10}
-[STWI] [INFO] 2026-01-20 15:56:34 Author resolved for post {"source_post_id":37296,"source_author":646,"dest_author":10,"dry_run":false}
-[STWI] [INFO] 2026-01-20 15:56:34 Upserting post {"source_id":37296,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 15:56:37 Mapping updated {"object_type":"post","source_id":37296,"dest_id":66}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 15:56:37 Imported post meta {"dest_id":66,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 15:56:38 Imported post meta {"dest_id":66,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 15:56:39 Imported post meta {"dest_id":66,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"align_content"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"_align_content"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"overlay_color"}
-[STWI] [INFO] 2026-01-20 15:56:40 Imported post meta {"dest_id":66,"meta_key":"_overlay_color"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"text_color"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"_text_color"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"background_image"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"_background_image"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"dots_color"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"_dots_color"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"company_logo"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"_company_logo"}
-[STWI] [INFO] 2026-01-20 15:56:41 Imported post meta {"dest_id":66,"meta_key":"image_style"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"_image_style"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"border_radius"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"_border_radius"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"show_list_of_content"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"_show_list_of_content"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"link_items"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported post meta {"dest_id":66,"meta_key":"_link_items"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 15:56:42 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 15:56:43 Imported Yoast meta {"dest_id":66,"meta_key":"_yoast_wpseo_primary_category"}
-[STWI] [INFO] 2026-01-20 15:56:43 Downloading attachment {"source_id":36293,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled-1.jpeg","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 15:56:45 Mapping updated {"object_type":"attachment","source_id":36293,"dest_id":67}
-[STWI] [INFO] 2026-01-20 15:56:46 Imported attachment {"source_id":36293,"dest_id":67,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled"}
-[STWI] [INFO] 2026-01-20 15:56:49 Mapping updated {"object_type":"term","source_id":54,"dest_id":76}
-[STWI] [INFO] 2026-01-20 15:56:50 Mapping updated {"object_type":"term","source_id":55,"dest_id":77}
-[STWI] [INFO] 2026-01-20 15:56:51 Mapping updated {"object_type":"term","source_id":56,"dest_id":78}
-[STWI] [INFO] 2026-01-20 15:56:51 Processed post {"source_id":37296,"dest_id":66,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":1}
-[STWI] [INFO] 2026-01-20 15:56:51 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37296}}
-[STWI] [INFO] 2026-01-20 16:00:22 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37296},"dry_run":false}
-[STWI] [INFO] 2026-01-20 16:00:22 Fetched posts for type {"post_type":"post","from_id":37296,"limit":1,"found":1}
-[STWI] [ERROR] 2026-01-20 16:00:22 Attachment not found in source DB {"attachment_id":12730}
-[STWI] [ERROR] 2026-01-20 16:00:22 Failed to update wp-image class (attachment missing) {"old_id":12730}
-[STWI] [INFO] 2026-01-20 16:00:22 Downloading attachment {"source_id":36297,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 16:00:24 Mapping updated {"object_type":"attachment","source_id":36297,"dest_id":68}
-[STWI] [INFO] 2026-01-20 16:00:24 Imported attachment {"source_id":36297,"dest_id":68,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02","post_title":"Training-Plan"}
-[STWI] [INFO] 2026-01-20 16:00:24 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2023\/02\/Training-Plan.png","path":"2023\/02\/Training-Plan.png"}
-[STWI] [INFO] 2026-01-20 16:00:26 Mapping updated {"object_type":"user","source_id":538,"dest_id":12}
-[STWI] [INFO] 2026-01-20 16:00:26 Created author user {"source_user_id":538,"dest_user_id":12,"user_login":"cnolen@emagine.com","user_email":"cnolen@emagine.com"}
-[STWI] [INFO] 2026-01-20 16:00:26 Author resolved for post {"source_post_id":37297,"source_author":538,"dest_author":12,"dry_run":false}
-[STWI] [INFO] 2026-01-20 16:00:26 Upserting post {"source_id":37297,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 16:00:27 Mapping updated {"object_type":"post","source_id":37297,"dest_id":69}
-[STWI] [INFO] 2026-01-20 16:00:27 Imported post meta {"dest_id":69,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 16:00:27 Imported post meta {"dest_id":69,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 16:00:27 Imported post meta {"dest_id":69,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 16:00:27 Imported post meta {"dest_id":69,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 16:00:27 Imported post meta {"dest_id":69,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 16:00:28 Imported post meta {"dest_id":69,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 16:00:29 Imported post meta {"dest_id":69,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 16:00:30 Imported post meta {"dest_id":69,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported post meta {"dest_id":69,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported post meta {"dest_id":69,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 16:00:31 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 16:00:32 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 16:00:32 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 16:00:32 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 16:00:32 Imported Yoast meta {"dest_id":69,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 16:00:32 Attachment already mapped {"source_id":36297,"dest_id":68}
-[STWI] [INFO] 2026-01-20 16:00:32 Processed post {"source_id":37297,"dest_id":69,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
-[STWI] [INFO] 2026-01-20 16:00:32 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37297}}
-[STWI] [INFO] 2026-01-20 16:01:12 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37297},"dry_run":false}
-[STWI] [INFO] 2026-01-20 16:01:13 Fetched posts for type {"post_type":"post","from_id":37297,"limit":1,"found":1}
-[STWI] [INFO] 2026-01-20 16:01:14 Mapping updated {"object_type":"user","source_id":587,"dest_id":13}
-[STWI] [INFO] 2026-01-20 16:01:14 Created author user {"source_user_id":587,"dest_user_id":13,"user_login":"EKumar","user_email":"ekumar@gpworldwide.com"}
-[STWI] [INFO] 2026-01-20 16:01:14 Author resolved for post {"source_post_id":37298,"source_author":587,"dest_author":13,"dry_run":false}
-[STWI] [INFO] 2026-01-20 16:01:14 Upserting post {"source_id":37298,"post_type":"post","update":false}
-[STWI] [INFO] 2026-01-20 16:01:16 Mapping updated {"object_type":"post","source_id":37298,"dest_id":70}
-[STWI] [INFO] 2026-01-20 16:01:16 Imported post meta {"dest_id":70,"meta_key":"_wp_page_template"}
-[STWI] [INFO] 2026-01-20 16:01:16 Imported post meta {"dest_id":70,"meta_key":"_relevanssi_noindex_reason"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"ppma_authors_name"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"_relevanssi_related_posts"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"_at_widget"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"_phylax_ppsccss_css"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"_phylax_ppsccss_single_only"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"_phylax_ppsccss_valid"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"hreflang-x-default"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"hreflang-en_US"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"hreflang-en_GB"}
-[STWI] [INFO] 2026-01-20 16:01:17 Imported post meta {"dest_id":70,"meta_key":"hreflang-zh_CN"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"hreflang-de"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"hreflang-es"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_title"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_description"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_keywords"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_og_title"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_og_description"}
-[STWI] [INFO] 2026-01-20 16:01:18 Imported post meta {"dest_id":70,"meta_key":"_aioseo_og_article_section"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"_aioseo_og_article_tags"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"_aioseo_twitter_title"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"_aioseo_twitter_description"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"ppma_disable_author_box"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"mtm_data"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"_wp_old_date"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"hreflang-en_AE"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"hreflang-en_TN"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"hreflang-en_TH"}
-[STWI] [INFO] 2026-01-20 16:01:19 Imported post meta {"dest_id":70,"meta_key":"_wp_old_slug"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported post meta {"dest_id":70,"meta_key":"hreflang-de_AT"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported post meta {"dest_id":70,"meta_key":"_dp_original"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported post meta {"dest_id":70,"meta_key":"hreflang-Select one"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_focuskw_text_input"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_focuskw"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_title"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_metadesc"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_content_score"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_focuskeywords"}
-[STWI] [INFO] 2026-01-20 16:01:20 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_keywordsynonyms"}
-[STWI] [INFO] 2026-01-20 16:01:21 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
-[STWI] [INFO] 2026-01-20 16:01:21 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_primary_topic"}
-[STWI] [INFO] 2026-01-20 16:01:21 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_primary_industry"}
-[STWI] [INFO] 2026-01-20 16:01:21 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_linkdex"}
-[STWI] [INFO] 2026-01-20 16:01:21 Imported Yoast meta {"dest_id":70,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
-[STWI] [INFO] 2026-01-20 16:01:21 Downloading attachment {"source_id":36299,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Digital-Transformation-The-Necessary-Shift-in-Organizational-Change-Management-Ado_373231998-scaled-1-e1680017823641.jpeg","subdir":"\/2023\/02"}
-[STWI] [INFO] 2026-01-20 16:01:23 Mapping updated {"object_type":"attachment","source_id":36299,"dest_id":71}
-[STWI] [INFO] 2026-01-20 16:01:23 Imported attachment {"source_id":36299,"dest_id":71,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Digital-Transformation-The-Necessary-Shift-in-Organizational-Change-Management-Ado_373231998-scaled-1-e1680017823641.jpeg","subdir":"\/2023\/02","post_title":"Blog-Digital-Transformation-The-Necessary-Shift-in-Organizational-Change-Management-Ado_373231998-scaled"}
-[STWI] [INFO] 2026-01-20 16:01:26 Mapping updated {"object_type":"term","source_id":57,"dest_id":79}
-[STWI] [INFO] 2026-01-20 16:01:27 Mapping updated {"object_type":"term","source_id":58,"dest_id":80}
-[STWI] [INFO] 2026-01-20 16:01:27 Processed post {"source_id":37298,"dest_id":70,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
-[STWI] [INFO] 2026-01-20 16:01:27 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37298}}
+[STWI] [INFO] 2026-01-21 12:07:34 Importer state reset (mapping cleared, log truncated).
+[STWI] [INFO] 2026-01-21 12:08:07 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":[],"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:08:07 Fetched posts for type {"post_type":"post","from_id":0,"limit":1,"found":1}
+[STWI] [INFO] 2026-01-21 12:08:09 Mapping updated {"object_type":"user","source_id":646,"dest_id":15}
+[STWI] [INFO] 2026-01-21 12:08:09 Created author user {"source_user_id":646,"dest_user_id":15,"user_login":"mktg4gp","user_email":"smedia@gpworldwide.com"}
+[STWI] [INFO] 2026-01-21 12:08:09 Author resolved for post {"source_post_id":37293,"source_author":646,"dest_author":15,"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:08:09 Upserting post {"source_id":37293,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-21 12:08:11 Mapping updated {"object_type":"post","source_id":37293,"dest_id":90}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped Relevanssi meta {"dest_id":90,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped Relevanssi meta {"dest_id":90,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-21 12:08:11 Imported post meta {"dest_id":90,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-21 12:08:11 Skipped AIOSEO meta {"dest_id":90,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported post meta {"dest_id":90,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported post meta {"dest_id":90,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported post meta {"dest_id":90,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-21 12:08:12 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-21 12:08:12 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-21 12:08:12 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported post meta {"dest_id":90,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-21 12:08:12 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported post meta {"dest_id":90,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-21 12:08:12 Skipped hreflang meta {"dest_id":90,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-21 12:08:12 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-21 12:08:13 Imported Yoast meta {"dest_id":90,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-21 12:08:13 Downloading attachment {"source_id":36282,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-21 12:08:15 Mapping updated {"object_type":"attachment","source_id":36282,"dest_id":91}
+[STWI] [INFO] 2026-01-21 12:08:15 Imported attachment {"source_id":36282,"dest_id":91,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-Advanced-Customization-Comes-to-Career-Site-Builder-Ado_279957470-scaled"}
+[STWI] [INFO] 2026-01-21 12:08:16 Mapping updated {"object_type":"term","source_id":45,"dest_id":86}
+[STWI] [INFO] 2026-01-21 12:08:18 Mapping updated {"object_type":"term","source_id":46,"dest_id":87}
+[STWI] [INFO] 2026-01-21 12:08:19 Mapping updated {"object_type":"term","source_id":47,"dest_id":88}
+[STWI] [INFO] 2026-01-21 12:08:20 Mapping updated {"object_type":"term","source_id":48,"dest_id":89}
+[STWI] [INFO] 2026-01-21 12:08:21 Mapping updated {"object_type":"term","source_id":49,"dest_id":90}
+[STWI] [INFO] 2026-01-21 12:08:22 Mapping updated {"object_type":"term","source_id":50,"dest_id":91}
+[STWI] [INFO] 2026-01-21 12:08:23 Mapping updated {"object_type":"term","source_id":51,"dest_id":92}
+[STWI] [INFO] 2026-01-21 12:08:24 Mapping updated {"object_type":"term","source_id":52,"dest_id":93}
+[STWI] [INFO] 2026-01-21 12:08:25 Mapping updated {"object_type":"term","source_id":53,"dest_id":94}
+[STWI] [INFO] 2026-01-21 12:08:25 Processed post {"source_id":37293,"dest_id":90,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
+[STWI] [INFO] 2026-01-21 12:08:25 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37293}}
+[STWI] [INFO] 2026-01-21 12:11:28 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37293},"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:11:28 Fetched posts for type {"post_type":"post","from_id":37293,"limit":1,"found":1}
+[STWI] [INFO] 2026-01-21 12:11:29 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08"}
+[STWI] [INFO] 2026-01-21 12:11:29 Mapping updated {"object_type":"attachment_url","source_id":2700765324,"dest_id":92}
+[STWI] [INFO] 2026-01-21 12:11:30 Imported attachment {"source_id":0,"dest_id":92,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","subdir":"\/2020\/08","post_title":"SF_Cloud_Migration-infographic-08.03.20.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:30 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf","path":"2020\/08\/SF_Cloud_Migration-infographic-08.03.20.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:30 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03"}
+[STWI] [INFO] 2026-01-21 12:11:30 Mapping updated {"object_type":"attachment_url","source_id":1305117766,"dest_id":93}
+[STWI] [INFO] 2026-01-21 12:11:30 Imported attachment {"source_id":0,"dest_id":93,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","subdir":"\/2018\/03","post_title":"Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:30 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf","path":"2018\/03\/Case-Study-RolloutSAPSucFactorsEmplCentral-3.16.18-OLopt.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:30 Downloading attachment {"source_id":0,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05"}
+[STWI] [INFO] 2026-01-21 12:11:31 Mapping updated {"object_type":"attachment_url","source_id":1741654779,"dest_id":94}
+[STWI] [INFO] 2026-01-21 12:11:31 Imported attachment {"source_id":0,"dest_id":94,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","subdir":"\/2019\/05","post_title":"SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:31 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf","path":"2019\/05\/SAP-SF-EmpCntrlPayroll-Flysht-5.01.19OLopt.pdf"}
+[STWI] [INFO] 2026-01-21 12:11:33 Mapping updated {"object_type":"user","source_id":642,"dest_id":16}
+[STWI] [INFO] 2026-01-21 12:11:33 Created author user {"source_user_id":642,"dest_user_id":16,"user_login":"michaelwhite","user_email":"mwhite@gpstrategies.com"}
+[STWI] [INFO] 2026-01-21 12:11:33 Author resolved for post {"source_post_id":37294,"source_author":642,"dest_author":16,"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:11:33 Upserting post {"source_id":37294,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-21 12:11:34 Mapping updated {"object_type":"post","source_id":37294,"dest_id":95}
+[STWI] [INFO] 2026-01-21 12:11:34 Imported post meta {"dest_id":95,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-21 12:11:34 Skipped Relevanssi meta {"dest_id":95,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped Relevanssi meta {"dest_id":95,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped AIOSEO meta {"dest_id":95,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-21 12:11:35 Skipped hreflang meta {"dest_id":95,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-21 12:11:35 Imported post meta {"dest_id":95,"meta_key":"align_content"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_align_content"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"overlay_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_overlay_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"text_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_text_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"background_image"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_background_image"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"dots_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_dots_color"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"company_logo"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"_company_logo"}
+[STWI] [INFO] 2026-01-21 12:11:36 Imported post meta {"dest_id":95,"meta_key":"image_style"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"_image_style"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"border_radius"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"_border_radius"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"_show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"link_items"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported post meta {"dest_id":95,"meta_key":"_link_items"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-21 12:11:37 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-21 12:11:38 Imported Yoast meta {"dest_id":95,"meta_key":"_yoast_wpseo_primary_category"}
+[STWI] [INFO] 2026-01-21 12:11:38 Downloading attachment {"source_id":36285,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/feature-blog-migrating-away-Oracle-UPK-07.15.20.jpg","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-21 12:11:40 Mapping updated {"object_type":"attachment","source_id":36285,"dest_id":96}
+[STWI] [INFO] 2026-01-21 12:11:40 Imported attachment {"source_id":36285,"dest_id":96,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/feature-blog-migrating-away-Oracle-UPK-07.15.20.jpg","subdir":"\/2023\/02","post_title":"feature-blog-migrating-away-Oracle-UPK-07.15.20"}
+[STWI] [INFO] 2026-01-21 12:11:42 Processed post {"source_id":37294,"dest_id":95,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":4}
+[STWI] [INFO] 2026-01-21 12:11:42 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37294}}
+[STWI] [INFO] 2026-01-21 12:17:15 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37294},"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:17:15 Fetched posts for type {"post_type":"post","from_id":37294,"limit":1,"found":1}
+[STWI] [INFO] 2026-01-21 12:17:15 Resolved author by mapping {"source_user_id":646,"dest_user_id":15}
+[STWI] [INFO] 2026-01-21 12:17:15 Author resolved for post {"source_post_id":37295,"source_author":646,"dest_author":15,"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:17:15 Upserting post {"source_id":37295,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-21 12:17:18 Mapping updated {"object_type":"post","source_id":37295,"dest_id":97}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped Relevanssi meta {"dest_id":97,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped Relevanssi meta {"dest_id":97,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-21 12:17:18 Skipped AIOSEO meta {"dest_id":97,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-21 12:17:18 Imported post meta {"dest_id":97,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-21 12:17:19 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-21 12:17:19 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-21 12:17:19 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-21 12:17:19 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-21 12:17:19 Skipped hreflang meta {"dest_id":97,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"align_content"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"_align_content"}
+[STWI] [INFO] 2026-01-21 12:17:19 Imported post meta {"dest_id":97,"meta_key":"overlay_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"_overlay_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"text_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"_text_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"background_image"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"_background_image"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"dots_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"_dots_color"}
+[STWI] [INFO] 2026-01-21 12:17:20 Imported post meta {"dest_id":97,"meta_key":"company_logo"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"_company_logo"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"image_style"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"_image_style"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"border_radius"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"_border_radius"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"_show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:17:21 Imported post meta {"dest_id":97,"meta_key":"link_items"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported post meta {"dest_id":97,"meta_key":"_link_items"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-21 12:17:22 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-21 12:17:23 Imported Yoast meta {"dest_id":97,"meta_key":"_yoast_wpseo_primary_category"}
+[STWI] [INFO] 2026-01-21 12:17:23 Downloading attachment {"source_id":36289,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled-1.jpeg","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-21 12:17:26 Mapping updated {"object_type":"attachment","source_id":36289,"dest_id":98}
+[STWI] [INFO] 2026-01-21 12:17:26 Imported attachment {"source_id":36289,"dest_id":98,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-How-Different-are-Boomi-and-SAP-Cloud-Platform-Integration-SCPI-Ado_305109236-scaled"}
+[STWI] [INFO] 2026-01-21 12:17:28 Processed post {"source_id":37295,"dest_id":97,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":1}
+[STWI] [INFO] 2026-01-21 12:17:28 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37295}}
+[STWI] [INFO] 2026-01-21 12:20:19 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37295},"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:20:19 Fetched posts for type {"post_type":"post","from_id":37295,"limit":1,"found":1}
+[STWI] [INFO] 2026-01-21 12:20:19 Resolved author by mapping {"source_user_id":646,"dest_user_id":15}
+[STWI] [INFO] 2026-01-21 12:20:19 Author resolved for post {"source_post_id":37296,"source_author":646,"dest_author":15,"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:20:19 Upserting post {"source_id":37296,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-21 12:20:21 Mapping updated {"object_type":"post","source_id":37296,"dest_id":99}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped Relevanssi meta {"dest_id":99,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped Relevanssi meta {"dest_id":99,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped AIOSEO meta {"dest_id":99,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-21 12:20:22 Skipped hreflang meta {"dest_id":99,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-21 12:20:22 Imported post meta {"dest_id":99,"meta_key":"align_content"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"_align_content"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"overlay_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"_overlay_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"text_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"_text_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"background_image"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"_background_image"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"dots_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"_dots_color"}
+[STWI] [INFO] 2026-01-21 12:20:23 Imported post meta {"dest_id":99,"meta_key":"company_logo"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"_company_logo"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"image_style"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"_image_style"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"border_radius"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"_border_radius"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"_show_list_of_content"}
+[STWI] [INFO] 2026-01-21 12:20:24 Imported post meta {"dest_id":99,"meta_key":"link_items"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported post meta {"dest_id":99,"meta_key":"_link_items"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-21 12:20:25 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-21 12:20:26 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-21 12:20:26 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-21 12:20:26 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-21 12:20:26 Imported Yoast meta {"dest_id":99,"meta_key":"_yoast_wpseo_primary_category"}
+[STWI] [INFO] 2026-01-21 12:20:26 Downloading attachment {"source_id":36293,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled-1.jpeg","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-21 12:20:28 Mapping updated {"object_type":"attachment","source_id":36293,"dest_id":100}
+[STWI] [INFO] 2026-01-21 12:20:28 Imported attachment {"source_id":36293,"dest_id":100,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled-1.jpeg","subdir":"\/2023\/02","post_title":"Blog-Data-Migration-Journey-to-the-Cloud-Part-3-Ado_215949089-scaled"}
+[STWI] [INFO] 2026-01-21 12:20:31 Mapping updated {"object_type":"term","source_id":54,"dest_id":97}
+[STWI] [INFO] 2026-01-21 12:20:32 Mapping updated {"object_type":"term","source_id":55,"dest_id":98}
+[STWI] [INFO] 2026-01-21 12:20:34 Mapping updated {"object_type":"term","source_id":56,"dest_id":99}
+[STWI] [INFO] 2026-01-21 12:20:34 Processed post {"source_id":37296,"dest_id":99,"post_type":"post","status":"imported","meta_count":69,"attachments_imported":1}
+[STWI] [INFO] 2026-01-21 12:20:34 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37296}}
+[STWI] [INFO] 2026-01-21 12:25:06 Batch start {"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"batch_limit":1,"cursor":{"post":37296},"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:25:06 Fetched posts for type {"post_type":"post","from_id":37296,"limit":1,"found":1}
+[STWI] [ERROR] 2026-01-21 12:25:06 Attachment not found in source DB {"attachment_id":12730}
+[STWI] [ERROR] 2026-01-21 12:25:06 Failed to update wp-image class (attachment missing) {"old_id":12730}
+[STWI] [INFO] 2026-01-21 12:25:07 Downloading attachment {"source_id":36297,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02"}
+[STWI] [INFO] 2026-01-21 12:25:08 Mapping updated {"object_type":"attachment","source_id":36297,"dest_id":101}
+[STWI] [INFO] 2026-01-21 12:25:08 Imported attachment {"source_id":36297,"dest_id":101,"source_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","subdir":"\/2023\/02","post_title":"Training-Plan"}
+[STWI] [INFO] 2026-01-21 12:25:08 Rewrote upload URL {"old_url":"https:\/\/www.gpstrategies.com\/wp-content\/uploads\/2023\/02\/Training-Plan.png","new_url":"http:\/\/gpstrategies-importer.test\/wp-content\/uploads\/2026\/01\/2023\/02\/Training-Plan.png","path":"2023\/02\/Training-Plan.png"}
+[STWI] [INFO] 2026-01-21 12:25:10 Mapping updated {"object_type":"user","source_id":538,"dest_id":17}
+[STWI] [INFO] 2026-01-21 12:25:10 Created author user {"source_user_id":538,"dest_user_id":17,"user_login":"cnolen@emagine.com","user_email":"cnolen@emagine.com"}
+[STWI] [INFO] 2026-01-21 12:25:10 Author resolved for post {"source_post_id":37297,"source_author":538,"dest_author":17,"dry_run":false}
+[STWI] [INFO] 2026-01-21 12:25:10 Upserting post {"source_id":37297,"post_type":"post","update":false}
+[STWI] [INFO] 2026-01-21 12:25:11 Mapping updated {"object_type":"post","source_id":37297,"dest_id":102}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"_wp_page_template"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped Relevanssi meta {"dest_id":102,"meta_key":"_relevanssi_noindex_reason"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"ppma_authors_name"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped Relevanssi meta {"dest_id":102,"meta_key":"_relevanssi_related_posts"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"_at_widget"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"_phylax_ppsccss_css"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"_phylax_ppsccss_single_only"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"_phylax_ppsccss_valid"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-x-default"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-en_US"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-en_GB"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-zh_CN"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-de"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-es"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_title"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_description"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_keywords"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_og_title"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_og_description"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_og_article_section"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_og_article_tags"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_twitter_title"}
+[STWI] [INFO] 2026-01-21 12:25:11 Skipped AIOSEO meta {"dest_id":102,"meta_key":"_aioseo_twitter_description"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"ppma_disable_author_box"}
+[STWI] [INFO] 2026-01-21 12:25:11 Imported post meta {"dest_id":102,"meta_key":"mtm_data"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported post meta {"dest_id":102,"meta_key":"_wp_old_date"}
+[STWI] [INFO] 2026-01-21 12:25:12 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-en_AE"}
+[STWI] [INFO] 2026-01-21 12:25:12 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-en_TN"}
+[STWI] [INFO] 2026-01-21 12:25:12 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-en_TH"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported post meta {"dest_id":102,"meta_key":"_wp_old_slug"}
+[STWI] [INFO] 2026-01-21 12:25:12 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-de_AT"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported post meta {"dest_id":102,"meta_key":"_dp_original"}
+[STWI] [INFO] 2026-01-21 12:25:12 Skipped hreflang meta {"dest_id":102,"meta_key":"hreflang-Select one"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_focuskw_text_input"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_focuskw"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_title"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_metadesc"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_content_score"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_focuskeywords"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_keywordsynonyms"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_estimated-reading-time-minutes"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_primary_topic"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_primary_industry"}
+[STWI] [INFO] 2026-01-21 12:25:12 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_linkdex"}
+[STWI] [INFO] 2026-01-21 12:25:13 Imported Yoast meta {"dest_id":102,"meta_key":"_yoast_wpseo_wordproof_timestamp"}
+[STWI] [INFO] 2026-01-21 12:25:13 Attachment already mapped {"source_id":36297,"dest_id":101}
+[STWI] [INFO] 2026-01-21 12:25:13 Processed post {"source_id":37297,"dest_id":102,"post_type":"post","status":"imported","meta_count":46,"attachments_imported":1}
+[STWI] [INFO] 2026-01-21 12:25:13 Batch completed {"processed":1,"dry_run":false,"post_types":["post","solutions-cpt","events-cpt","news-cpt","podcasts-cpt","webinars-cpt","resource","case-study-cpt","training-course","acab-cpt"],"cursor":{"post":37297}}

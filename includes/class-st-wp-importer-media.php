@@ -215,6 +215,43 @@ class St_Wp_Importer_Media {
 	}
 
 	/**
+	 * Import an attachment from a source URL (uploads), mapping by file path if possible.
+	 *
+	 * @param string $source_url
+	 * @param array  $settings
+	 * @param bool   $dry_run
+	 * @return int|null
+	 */
+	public function import_attachment_from_url( string $source_url, array $settings, bool $dry_run = false ): ?int {
+		$base = rtrim( $settings['source_site_url'], '/' ) . '/wp-content/uploads/';
+		if ( strpos( $source_url, $base ) !== 0 ) {
+			$this->logger->log(
+				'INFO',
+				'Skipped attachment import (external URL)',
+				array( 'source_url' => $source_url )
+			);
+			return null;
+		}
+
+		$attached_file = ltrim( str_replace( $base, '', $source_url ), '/' );
+		$found_id      = $this->source_db->find_attachment_id_by_file( $attached_file, $settings );
+		if ( $found_id ) {
+			return $this->import_attachment_by_id( $found_id, $settings, $dry_run );
+		}
+
+		// Fallback: import directly from URL with fake meta.
+		$fake_post = array(
+			'post_title' => basename( $attached_file ),
+			'guid'       => $source_url,
+		);
+		$meta_rows = array(
+			array( 'meta_key' => '_wp_attached_file', 'meta_value' => $attached_file ),
+		);
+
+		return $this->import_attachment_record( 0, $fake_post, $meta_rows, $settings, $dry_run );
+	}
+
+	/**
 	 * Extract subdir (/YYYY/MM) from attached file path.
 	 *
 	 * @param string $attached_file
