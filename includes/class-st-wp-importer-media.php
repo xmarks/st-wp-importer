@@ -221,6 +221,9 @@ class St_Wp_Importer_Media {
 		}
 		update_post_meta( $attachment_id, '_stwi_source_attached_file', $attached_file );
 
+		$attached_path = get_attached_file( $attachment_id );
+		$final_size    = ( $attached_path && file_exists( $attached_path ) ) ? filesize( $attached_path ) : 0;
+
 		$this->logger->log(
 			'INFO',
 			'Imported attachment',
@@ -230,7 +233,8 @@ class St_Wp_Importer_Media {
 				'source_url'  => $source_url,
 				'subdir'      => $subdir,
 				'post_title'  => $post_row['post_title'] ?? '',
-				'size'        => file_exists( $tmp ) ? filesize( $tmp ) : 0,
+				'size'        => $final_size,
+				'attached'    => $attached_path,
 			)
 		);
 
