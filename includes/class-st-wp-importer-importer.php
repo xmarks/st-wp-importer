@@ -64,113 +64,136 @@ class St_Wp_Importer_Importer {
 	 * @return array
 	 */
 	public function run_batch(): array {
-		$state = $this->state->get();
-		if ( ! empty( $state['stop_requested'] ) ) {
-			$this->logger->log( 'INFO', 'Stop requested; batch aborted.' );
-			$this->state->mark_stopped();
-			return array(
-				'success' => false,
-				'message' => 'Stop requested. Halting.',
-			);
+		$settings   = $this->settings->get();
+		$lock_ttl   = max( 300, (int) $settings['run_interval_minutes'] * 120 );
+		$lock_key   = 'stwi_batch_lock';
+
+		if ( get_transient( $lock_key ) ) {
+			$this->logger->log( 'INFO', 'Batch skipped due to existing lock (likely overlapping run).' );
+			return array( 'success' => false, 'message' => 'Batch skipped; another run is in progress.' );
 		}
 
-		$settings   = $this->settings->get();
-		$dry_run    = (bool) $settings['dry_run'];
-		$post_types = wp_list_pluck( $settings['import_scope'], 'post_type' );
-		$post_types = array_filter( $post_types, function ( $pt ) {
-			return 'page' !== $pt;
-		} );
-
-		$batch_limit        = max( 1, (int) $settings['posts_per_run'] );
-		$processed          = 0;
-		$persistable_stats  = $state['stats'] ?? $this->state->defaults()['stats'];
-		$persistable_cursor = $state['cursor'] ?? array();
-		$run_stats          = $persistable_stats;
-		$run_cursor         = $persistable_cursor;
-
+		set_transient( $lock_key, time(), $lock_ttl );
 		$this->logger->log(
 			'INFO',
-			'Batch start',
+			'Batch lock acquired',
 			array(
-				'post_types'   => $post_types,
-				'batch_limit'  => $batch_limit,
-				'cursor'       => $run_cursor,
-				'dry_run'      => $dry_run,
+				'lock_ttl' => $lock_ttl,
+				'cron'     => ( function_exists( 'wp_doing_cron' ) && wp_doing_cron() ) ? 'yes' : 'no',
 			)
 		);
 
-		foreach ( $post_types as $post_type ) {
-			if ( $processed >= $batch_limit ) {
-				break;
+		try {
+			$state = $this->state->get();
+			if ( ! empty( $state['stop_requested'] ) ) {
+				$this->logger->log( 'INFO', 'Stop requested; batch aborted.' );
+				$this->state->mark_stopped();
+				return array(
+					'success' => false,
+					'message' => 'Stop requested. Halting.',
+				);
 			}
-			$remaining = $batch_limit - $processed;
-			$cursor    = isset( $run_cursor[ $post_type ] ) ? (int) $run_cursor[ $post_type ] : 0;
-			$rows      = $this->source_db->fetch_posts( $post_type, $cursor, $remaining, $settings );
+
+			$dry_run    = (bool) $settings['dry_run'];
+			$post_types = wp_list_pluck( $settings['import_scope'], 'post_type' );
+			$post_types = array_filter( $post_types, function ( $pt ) {
+				return 'page' !== $pt;
+			} );
+
+			$batch_limit        = max( 1, (int) $settings['posts_per_run'] );
+			$processed          = 0;
+			$persistable_stats  = $state['stats'] ?? $this->state->defaults()['stats'];
+			$persistable_cursor = $state['cursor'] ?? array();
+			$run_stats          = $persistable_stats;
+			$run_cursor         = $persistable_cursor;
 
 			$this->logger->log(
 				'INFO',
-				'Fetched posts for type',
+				'Batch start',
 				array(
-					'post_type' => $post_type,
-					'from_id'   => $cursor,
-					'limit'     => $remaining,
-					'found'     => count( $rows ),
+					'post_types'   => $post_types,
+					'batch_limit'  => $batch_limit,
+					'cursor'       => $run_cursor,
+					'dry_run'      => $dry_run,
 				)
 			);
 
-			foreach ( $rows as $row ) {
-				$stop_state = $this->state->get();
-				if ( ! empty( $stop_state['stop_requested'] ) ) {
-					$this->logger->log( 'INFO', 'Stop requested mid-batch; halting.' );
-					$this->state->mark_stopped();
-					return array( 'success' => false, 'message' => 'Stop requested mid-batch.' );
-				}
-
-				$result = $this->import_single_post( $row, $settings, $dry_run );
-				if ( $result['status'] === 'imported' ) {
-					$run_stats['posts_imported']++;
-				} elseif ( $result['status'] === 'updated' ) {
-					$run_stats['posts_updated']++;
-				} else {
-					$run_stats['posts_skipped']++;
-				}
-				$run_stats['attachments_imported'] += $result['attachments_imported'];
-				$run_cursor[ $post_type ]         = (int) $row['ID'];
-				$processed++;
-
+			foreach ( $post_types as $post_type ) {
 				if ( $processed >= $batch_limit ) {
-					break 2;
+					break;
+				}
+				$remaining = $batch_limit - $processed;
+				$cursor    = isset( $run_cursor[ $post_type ] ) ? (int) $run_cursor[ $post_type ] : 0;
+				$rows      = $this->source_db->fetch_posts( $post_type, $cursor, $remaining, $settings );
+
+				$this->logger->log(
+					'INFO',
+					'Fetched posts for type',
+					array(
+						'post_type' => $post_type,
+						'from_id'   => $cursor,
+						'limit'     => $remaining,
+						'found'     => count( $rows ),
+					)
+				);
+
+				foreach ( $rows as $row ) {
+					$stop_state = $this->state->get();
+					if ( ! empty( $stop_state['stop_requested'] ) ) {
+						$this->logger->log( 'INFO', 'Stop requested mid-batch; halting.' );
+						$this->state->mark_stopped();
+						return array( 'success' => false, 'message' => 'Stop requested mid-batch.' );
+					}
+
+					$result = $this->import_single_post( $row, $settings, $dry_run );
+					if ( $result['status'] === 'imported' ) {
+						$run_stats['posts_imported']++;
+					} elseif ( $result['status'] === 'updated' ) {
+						$run_stats['posts_updated']++;
+					} else {
+						$run_stats['posts_skipped']++;
+					}
+					$run_stats['attachments_imported'] += $result['attachments_imported'];
+					$run_cursor[ $post_type ]         = (int) $row['ID'];
+					$processed++;
+
+					if ( $processed >= $batch_limit ) {
+						break 2;
+					}
 				}
 			}
-		}
 
-		if ( ! $dry_run ) {
-			$persistable_stats  = $run_stats;
-			$persistable_cursor = $run_cursor;
-			$this->state->update(
+			if ( ! $dry_run ) {
+				$persistable_stats  = $run_stats;
+				$persistable_cursor = $run_cursor;
+				$this->state->update(
+					array(
+						'cursor'      => $persistable_cursor,
+						'stats'       => $persistable_stats,
+						'last_run_at' => time(),
+					)
+				);
+			}
+
+			$this->logger->log(
+				'INFO',
+				'Batch completed',
 				array(
-					'cursor'      => $persistable_cursor,
-					'stats'       => $persistable_stats,
-					'last_run_at' => time(),
+					'processed'  => $processed,
+					'dry_run'    => $dry_run,
+					'post_types' => $post_types,
+					'cursor'     => $run_cursor,
 				)
 			);
+
+			return array(
+				'success' => true,
+				'message' => sprintf( 'Processed %d posts', $processed ),
+			);
+		} finally {
+			delete_transient( $lock_key );
+			$this->logger->log( 'INFO', 'Batch lock released' );
 		}
-
-		$this->logger->log(
-			'INFO',
-			'Batch completed',
-			array(
-				'processed'  => $processed,
-				'dry_run'    => $dry_run,
-				'post_types' => $post_types,
-				'cursor'     => $run_cursor,
-			)
-		);
-
-		return array(
-			'success' => true,
-			'message' => sprintf( 'Processed %d posts', $processed ),
-		);
 	}
 
 	/**
