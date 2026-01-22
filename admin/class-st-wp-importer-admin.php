@@ -286,75 +286,99 @@ class St_Wp_Importer_Admin {
 			wp_send_json_error( array( 'message' => 'Unauthorized' ) );
 		}
 
-		$batch_size = isset( $_POST['batch_size'] ) ? absint( $_POST['batch_size'] ) : 20;
-		$batch_size = $batch_size > 0 ? min( $batch_size, 50 ) : 20;
+		$batch_size = isset( $_POST['batch_size'] ) ? absint( $_POST['batch_size'] ) : 100;
+		$batch_size = $batch_size > 0 ? min( $batch_size, 200 ) : 100;
+		$full_purge = isset( $_POST['full_purge'] ) ? (bool) $_POST['full_purge'] : true;
+		$time_budget= $full_purge ? 20 : 8;
+		$started    = microtime( true );
 
-		$rows     = $this->map->get_rows_for_deletion( $batch_size );
-		$deleted  = array( 'posts' => 0, 'attachments' => 0, 'terms' => 0, 'users' => 0 );
-		$errors   = array();
+		$deleted = array( 'posts' => 0, 'attachments' => 0, 'terms' => 0, 'users' => 0 );
+		$errors  = array();
 
-		foreach ( $rows as $row ) {
-			$dest_id    = (int) $row['dest_id'];
-			$object_type= $row['source_object_type'];
-			$context    = array(
-				'mapping_id'  => (int) $row['id'],
-				'object_type' => $object_type,
-				'dest_id'     => $dest_id,
-				'source_id'   => (int) $row['source_id'],
-			);
+		$restore_cache = wp_suspend_cache_invalidation( true );
+		wp_defer_term_counting( true );
+		wp_defer_comment_counting( true );
+		@set_time_limit( 300 ); // phpcs:ignore
 
-			if ( in_array( $object_type, array( 'attachment', 'attachment_url' ), true ) ) {
-				$result = wp_delete_attachment( $dest_id, true );
-				if ( $result ) {
-					$deleted['attachments']++;
-					$this->map->delete_row( (int) $row['id'] );
-					$this->logger->log( 'INFO', 'Deleted imported attachment', $context );
-				} else {
-					$errors[] = $context;
-					$this->logger->log( 'ERROR', 'Failed to delete imported attachment', $context );
+		try {
+			do {
+				$rows = $this->map->get_rows_for_deletion( $batch_size );
+				if ( empty( $rows ) ) {
+					break;
 				}
-				continue;
-			}
 
-			if ( 'term' === $object_type ) {
-				$term_deleted = wp_delete_term( $dest_id, $this->guess_taxonomy_from_term_id( $dest_id ) );
-				if ( ! is_wp_error( $term_deleted ) ) {
-					$deleted['terms']++;
-					$this->map->delete_row( (int) $row['id'] );
-					$this->logger->log( 'INFO', 'Deleted imported term', $context );
-				} else {
-					$errors[] = $context;
-					$this->logger->log( 'ERROR', 'Failed to delete imported term', $context + array( 'error' => $term_deleted->get_error_message() ) );
-				}
-				continue;
-			}
+				foreach ( $rows as $row ) {
+					$dest_id     = (int) $row['dest_id'];
+					$object_type = $row['source_object_type'];
+					$context     = array(
+						'mapping_id'  => (int) $row['id'],
+						'object_type' => $object_type,
+						'dest_id'     => $dest_id,
+						'source_id'   => (int) $row['source_id'],
+					);
 
-			if ( 'user' === $object_type ) {
-				if ( get_current_user_id() === $dest_id ) {
-					$this->logger->log( 'ERROR', 'Skipping deletion of current user', $context );
-					continue;
-				}
-				$result = wp_delete_user( $dest_id );
-				if ( $result ) {
-					$deleted['users']++;
-					$this->map->delete_row( (int) $row['id'] );
-					$this->logger->log( 'INFO', 'Deleted imported user', $context );
-				} else {
-					$errors[] = $context;
-					$this->logger->log( 'ERROR', 'Failed to delete imported user', $context );
-				}
-				continue;
-			}
+					if ( in_array( $object_type, array( 'attachment', 'attachment_url' ), true ) ) {
+						$result = wp_delete_attachment( $dest_id, true );
+						if ( $result ) {
+							$deleted['attachments']++;
+							$this->map->delete_row( (int) $row['id'] );
+							$this->logger->log( 'INFO', 'Deleted imported attachment', $context );
+						} else {
+							$errors[] = $context;
+							$this->logger->log( 'ERROR', 'Failed to delete imported attachment', $context );
+						}
+						continue;
+					}
 
-			$result = wp_delete_post( $dest_id, true );
-			if ( $result ) {
-				$deleted['posts']++;
-				$this->map->delete_row( (int) $row['id'] );
-				$this->logger->log( 'INFO', 'Deleted imported post', $context );
-			} else {
-				$errors[] = $context;
-				$this->logger->log( 'ERROR', 'Failed to delete imported post', $context );
-			}
+					if ( 'term' === $object_type ) {
+						$term_deleted = wp_delete_term( $dest_id, $this->guess_taxonomy_from_term_id( $dest_id ) );
+						if ( ! is_wp_error( $term_deleted ) ) {
+							$deleted['terms']++;
+							$this->map->delete_row( (int) $row['id'] );
+							$this->logger->log( 'INFO', 'Deleted imported term', $context );
+						} else {
+							$errors[] = $context;
+							$this->logger->log( 'ERROR', 'Failed to delete imported term', $context + array( 'error' => $term_deleted->get_error_message() ) );
+						}
+						continue;
+					}
+
+					if ( 'user' === $object_type ) {
+						if ( get_current_user_id() === $dest_id ) {
+							$this->logger->log( 'ERROR', 'Skipping deletion of current user', $context );
+							continue;
+						}
+						$result = wp_delete_user( $dest_id );
+						if ( $result ) {
+							$deleted['users']++;
+							$this->map->delete_row( (int) $row['id'] );
+							$this->logger->log( 'INFO', 'Deleted imported user', $context );
+						} else {
+							$errors[] = $context;
+							$this->logger->log( 'ERROR', 'Failed to delete imported user', $context );
+						}
+						continue;
+					}
+
+					$result = wp_delete_post( $dest_id, true );
+					if ( $result ) {
+						$deleted['posts']++;
+						$this->map->delete_row( (int) $row['id'] );
+						$this->logger->log( 'INFO', 'Deleted imported post', $context );
+					} else {
+						$errors[] = $context;
+						$this->logger->log( 'ERROR', 'Failed to delete imported post', $context );
+					}
+				}
+
+				if ( ! $full_purge ) {
+					break;
+				}
+			} while ( ( microtime( true ) - $started ) < $time_budget );
+		} finally {
+			wp_suspend_cache_invalidation( $restore_cache );
+			wp_defer_term_counting( false );
+			wp_defer_comment_counting( false );
 		}
 
 		$remaining = $this->map->count_remaining();
@@ -368,18 +392,22 @@ class St_Wp_Importer_Admin {
 		if ( ! empty( $errors ) ) {
 			wp_send_json_error(
 				array(
-					'message'   => 'Some items failed to delete. Check logs.',
-					'deleted'   => $deleted,
-					'remaining' => $remaining,
+					'message'    => 'Some items failed to delete. Check logs.',
+					'deleted'    => $deleted,
+					'remaining'  => $remaining,
+					'duration_s' => round( microtime( true ) - $started, 2 ),
+					'full_purge' => $full_purge,
 				)
 			);
 		}
 
 		wp_send_json_success(
 			array(
-				'message'   => sprintf( 'Deleted %d posts, %d attachments, %d terms, %d users. Remaining: %d', $deleted['posts'], $deleted['attachments'], $deleted['terms'], $deleted['users'], $remaining ),
-				'deleted'   => $deleted,
-				'remaining' => $remaining,
+				'message'    => sprintf( 'Deleted %d posts, %d attachments, %d terms, %d users. Remaining: %d', $deleted['posts'], $deleted['attachments'], $deleted['terms'], $deleted['users'], $remaining ),
+				'deleted'    => $deleted,
+				'remaining'  => $remaining,
+				'duration_s' => round( microtime( true ) - $started, 2 ),
+				'full_purge' => $full_purge,
 			)
 		);
 	}

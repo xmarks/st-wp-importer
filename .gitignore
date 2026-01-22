@@ -1,3 +1,3 @@
 # Ignore local logs and agent notes in this plugin
-stwi.log
 .agent-notes/
+*.log
