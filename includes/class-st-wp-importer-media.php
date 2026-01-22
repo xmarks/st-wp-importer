@@ -184,9 +184,11 @@ class St_Wp_Importer_Media {
 
 		$upload_filter = function ( $dirs ) use ( $subdir ) {
 			if ( ! empty( $subdir ) ) {
-				$dirs['subdir'] = $subdir;
-				$dirs['path']  .= $subdir;
-				$dirs['url']   .= $subdir;
+				// Force uploads into the original source subdir (e.g., /2023/02) instead of the current date subdir.
+				$normalized_subdir = '/' . ltrim( $subdir, '/' );
+				$dirs['subdir']    = $normalized_subdir;
+				$dirs['path']      = trailingslashit( $dirs['basedir'] ) . ltrim( $normalized_subdir, '/' );
+				$dirs['url']       = trailingslashit( $dirs['baseurl'] ) . ltrim( $normalized_subdir, '/' );
 			}
 			return $dirs;
 		};
