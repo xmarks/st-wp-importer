@@ -1,0 +1,3 @@
+# Ignore local logs and agent notes in this plugin
+.agent-notes/
+*.log
