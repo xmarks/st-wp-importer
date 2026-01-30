@@ -101,7 +101,7 @@
 			});
 	});
 
-	function deleteBatch() {
+	function deleteBatch(autoContinue = true) {
 		const statusEl = $('#stwi-delete-status');
 		statusEl.text('Deleting imported content...');
 		$('#stwi-delete-imported').prop('disabled', true);
@@ -109,23 +109,25 @@
 		const data = {
 			action: 'stwi_delete_imported',
 			nonce: stwiAdmin.nonce,
-			batch_size: 20
+			batch_size: 200 // use larger batch to reduce roundtrips
 		};
 
 		$.post(stwiAdmin.ajaxUrl, data)
 			.done(function(response){
 				if (response.success) {
-					const remaining = response.data && response.data.remaining !== undefined ? response.data.remaining : '?';
-					statusEl.text(response.data.message || 'Batch deleted.');
-					if (remaining > 0) {
-						if (confirm(`Remaining ${remaining} items. Run another delete batch?`)) {
-							deleteBatch();
-							return;
-						}
-						$('#stwi-delete-imported').prop('disabled', false);
-					} else {
-						$('#stwi-delete-imported').prop('disabled', false);
+					const remaining = (response.data && response.data.remaining !== undefined) ? response.data.remaining : '?';
+					statusEl.text((response.data && response.data.message) ? response.data.message : 'Batch deleted.');
+
+					if (autoContinue && typeof remaining === 'number' && remaining > 0) {
+						// schedule next batch immediately until all gone
+						setTimeout(function(){ deleteBatch(true); }, 150);
+						return;
 					}
+
+					if (remaining > 0) {
+						statusEl.append(' Remaining items detected. Click again to continue.');
+					}
+					$('#stwi-delete-imported').prop('disabled', false);
 				} else {
 					statusEl.text((response.data && response.data.message) ? response.data.message : 'Delete failed. Check logs.');
 					$('#stwi-delete-imported').prop('disabled', false);
@@ -142,7 +144,7 @@
 		if (!confirm('This will DELETE content imported via ST WI (posts + attachments) using the mapping table. This cannot be undone. Continue?')) {
 			return;
 		}
-		deleteBatch();
+		deleteBatch(true);
 	});
 
 })( jQuery );

@@ -314,11 +314,12 @@ class St_Wp_Importer_Importer {
 			update_post_meta( $dest_id, '_stwi_source_post_type', $post_type );
 			$this->map->upsert( $source_blog_id, 'post', $source_id, $dest_id );
 
-			// Meta import (excluding thumbnail here).
-			$this->import_meta( $dest_id, $meta, $settings, $dry_run );
+            // Meta import (excluding thumbnail here).
+            $meta_attachments_imported      = $this->import_meta( $dest_id, $meta, $settings, $dry_run );
 
-			// Featured image.
-			$rewrite['attachments_imported'] += $this->maybe_set_featured_image( $dest_id, $meta, $settings, $dry_run );
+            // Featured image.
+            $rewrite['attachments_imported'] += $this->maybe_set_featured_image( $dest_id, $meta, $settings, $dry_run );
+            $rewrite['attachments_imported'] += $meta_attachments_imported;
 
 			// Taxonomies.
 			$this->import_taxonomies( $dest_id, $source_id, $post_type, $settings );
@@ -370,12 +371,22 @@ class St_Wp_Importer_Importer {
 	 * @param array $settings
 	 * @param bool  $dry_run
 	 */
-	private function import_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): void {
-		$yoast_enabled = ! empty( $settings['plugin_yoastseo'] );
-		$acf_enabled   = ! empty( $settings['plugin_acf'] );
-		$permalink_enabled = ! empty( $settings['plugin_permalink_manager'] );
-		$yoast_keys    = array();
-		$permalink_keys= array();
+    private function import_meta( int $dest_id, array $meta_rows, array $settings, bool $dry_run ): int {
+        $yoast_enabled = ! empty( $settings['plugin_yoastseo'] );
+        $acf_enabled   = ! empty( $settings['plugin_acf'] );
+        $permalink_enabled = ! empty( $settings['plugin_permalink_manager'] );
+        $yoast_keys    = array();
+        $permalink_keys= array();
+        $attachments_imported = 0;
+        $acf_value_keys = array();
+
+        // Build lookup of ACF field meta keys (meta names without leading underscore).
+        foreach ( $meta_rows as $meta_row ) {
+            if ( isset( $meta_row['meta_key'], $meta_row['meta_value'] ) && strpos( $meta_row['meta_key'], '_' ) === 0 && is_string( $meta_row['meta_value'] ) && strpos( $meta_row['meta_value'], 'field_' ) === 0 ) {
+                $acf_value_keys[] = substr( $meta_row['meta_key'], 1 );
+            }
+        }
+        $acf_value_keys = array_unique( $acf_value_keys );
 		foreach ( $meta_rows as $meta_row ) {
 			if ( strpos( $meta_row['meta_key'], '_yoast_wpseo_' ) === 0 ) {
 				$yoast_keys[] = $meta_row;
@@ -416,10 +427,24 @@ class St_Wp_Importer_Importer {
 			if ( ! $permalink_enabled && $this->is_permalink_manager_meta( $key ) ) {
 				continue;
 			}
-			// Skip ACF meta if toggle is off.
-			if ( ! $acf_enabled && $this->is_acf_meta( $key, $value ) ) {
-				continue;
-			}
+            // Skip ACF meta if toggle is off.
+            if ( ! $acf_enabled && $this->is_acf_meta( $key, $value ) ) {
+                continue;
+            }
+
+            // If this meta looks like an ACF image/file reference, ensure the attachment is imported and rewritten.
+            if ( $acf_enabled ) {
+                $rewrite = $this->maybe_import_acf_media_value( $key, $value, $settings, $dry_run, $acf_value_keys );
+                $value   = $rewrite['value'];
+                $attachments_imported += $rewrite['imported'];
+            }
+
+            // Generic media-looking meta (non-ACF or missed above).
+            if ( ! in_array( $key, $acf_value_keys, true ) && $this->looks_like_media_meta_key( $key ) ) {
+                $rewrite = $this->maybe_import_generic_media_value( $key, $value, $settings, $dry_run );
+                $value   = $rewrite['value'];
+                $attachments_imported += $rewrite['imported'];
+            }
 
 			if ( $dry_run ) {
 				$this->logger->log(
@@ -438,13 +463,15 @@ class St_Wp_Importer_Importer {
 			);
 		}
 
-		if ( $yoast_enabled ) {
-			$this->import_yoast_meta( $dest_id, $yoast_keys, $settings, $dry_run );
-		}
-		if ( $permalink_enabled ) {
-			$this->import_permalink_meta( $dest_id, $permalink_keys, $settings, $dry_run );
-		}
-	}
+        if ( $yoast_enabled ) {
+            $this->import_yoast_meta( $dest_id, $yoast_keys, $settings, $dry_run );
+        }
+        if ( $permalink_enabled ) {
+            $this->import_permalink_meta( $dest_id, $permalink_keys, $settings, $dry_run );
+        }
+
+        return $attachments_imported;
+    }
 
 	/**
 	 * Set featured image if available.
@@ -839,15 +866,175 @@ class St_Wp_Importer_Importer {
 	 * @param mixed  $value
 	 * @return bool
 	 */
-	private function is_acf_meta( string $key, $value ): bool {
-		if ( strpos( $key, 'field_' ) === 0 ) {
-			return true;
-		}
-		if ( strpos( $key, '_' ) === 0 && is_string( $value ) && strpos( $value, 'field_' ) === 0 ) {
-			return true;
-		}
-		return false;
-	}
+    private function is_acf_meta( string $key, $value ): bool {
+        if ( strpos( $key, 'field_' ) === 0 ) {
+            return true;
+        }
+        if ( strpos( $key, '_' ) === 0 && is_string( $value ) && strpos( $value, 'field_' ) === 0 ) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Detect and import media referenced by ACF image/file fields.
+     *
+     * Handles common shapes:
+     * - plain attachment ID (int or numeric string)
+     * - associative array with ID / url / sizes (ACF image return formats)
+     * - serialized data already parsed by maybe_unserialize
+     *
+     * Returns imported count and possibly rewritten value (e.g., new attachment ID).
+     */
+    private function maybe_import_acf_media_value( string $key, $value, array $settings, bool $dry_run, array $acf_value_keys ): array {
+        $result = array(
+            'value'    => $value,
+            'imported' => 0,
+        );
+
+        // Skip non-ACF meta keys (fast exit)
+        if ( ! in_array( $key, $acf_value_keys, true ) ) {
+            return $result;
+        }
+
+        // Attachment id form.
+        if ( is_numeric( $value ) ) {
+            $src_id = (int) $value;
+            if ( $src_id > 0 ) {
+                $imported_id = $this->media->import_attachment_by_id( $src_id, $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                }
+            }
+            return $result;
+        }
+
+        // Direct URL string to uploads.
+        if ( is_string( $value ) && strpos( $value, '/wp-content/uploads/' ) !== false ) {
+            $imported_id = $this->media->import_attachment_from_url( $value, $settings, $dry_run );
+            if ( $imported_id ) {
+                $result['value']    = $imported_id;
+                $result['imported'] = 1;
+            }
+            return $result;
+        }
+
+        // Array form from ACF image/file (return = array).
+        if ( is_array( $value ) ) {
+            // Typical keys: id / ID, url, sizes, filename, filesize, mime_type
+            $src_id = 0;
+            if ( isset( $value['id'] ) && is_numeric( $value['id'] ) ) {
+                $src_id = (int) $value['id'];
+            } elseif ( isset( $value['ID'] ) && is_numeric( $value['ID'] ) ) {
+                $src_id = (int) $value['ID'];
+            }
+
+            if ( $src_id > 0 ) {
+                $imported_id = $this->media->import_attachment_by_id( $src_id, $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                    return $result;
+                }
+            }
+
+            // Fallback: try URL
+            if ( ! empty( $value['url'] ) && is_string( $value['url'] ) ) {
+                $imported_id = $this->media->import_attachment_from_url( $value['url'], $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                    return $result;
+                }
+            }
+
+            // Fallback: try sizes array URLs (pick largest available)
+            if ( ! empty( $value['sizes'] ) && is_array( $value['sizes'] ) ) {
+                $urls = array_values( array_filter( $value['sizes'], 'is_string' ) );
+                foreach ( $urls as $size_url ) {
+                    $imported_id = $this->media->import_attachment_from_url( $size_url, $settings, $dry_run );
+                    if ( $imported_id ) {
+                        $result['value']    = $imported_id;
+                        $result['imported'] = 1;
+                        return $result;
+                    }
+                }
+            }
+        }
+
+        return $result;
+    }
+
+    /**
+     * Heuristic for media-like meta keys.
+     */
+    private function looks_like_media_meta_key( string $key ): bool {
+        return (bool) preg_match( '/(image|logo|photo|thumbnail|thumb|file|attachment)/i', $key );
+    }
+
+    /**
+     * Generic media import for non-ACF meta values.
+     */
+    private function maybe_import_generic_media_value( string $key, $value, array $settings, bool $dry_run ): array {
+        $result = array(
+            'value'    => $value,
+            'imported' => 0,
+        );
+
+        // Numeric attachment id assumption.
+        if ( is_numeric( $value ) ) {
+            $src_id = (int) $value;
+            if ( $src_id > 0 ) {
+                $imported_id = $this->media->import_attachment_by_id( $src_id, $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                }
+            }
+            return $result;
+        }
+
+        // URL to source uploads.
+        if ( is_string( $value ) && strpos( $value, '/wp-content/uploads/' ) !== false ) {
+            $imported_id = $this->media->import_attachment_from_url( $value, $settings, $dry_run );
+            if ( $imported_id ) {
+                $result['value']    = $imported_id;
+                $result['imported'] = 1;
+            }
+            return $result;
+        }
+
+        // Array form similar to ACF image/file return.
+        if ( is_array( $value ) ) {
+            $src_id = 0;
+            if ( isset( $value['id'] ) && is_numeric( $value['id'] ) ) {
+                $src_id = (int) $value['id'];
+            } elseif ( isset( $value['ID'] ) && is_numeric( $value['ID'] ) ) {
+                $src_id = (int) $value['ID'];
+            }
+
+            if ( $src_id > 0 ) {
+                $imported_id = $this->media->import_attachment_by_id( $src_id, $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                    return $result;
+                }
+            }
+
+            if ( ! empty( $value['url'] ) && is_string( $value['url'] ) ) {
+                $imported_id = $this->media->import_attachment_from_url( $value['url'], $settings, $dry_run );
+                if ( $imported_id ) {
+                    $result['value']    = $imported_id;
+                    $result['imported'] = 1;
+                    return $result;
+                }
+            }
+        }
+
+        return $result;
+    }
 
 	/**
 	 * Identify Permalink Manager Pro meta patterns.
