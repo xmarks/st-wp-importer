@@ -59,6 +59,21 @@ class St_Wp_Importer_Media {
 			return $existing;
 		}
 
+		// Rescue: attachment might already exist with STWI meta but without a map row (e.g., earlier run pre-table). Backfill mapping to avoid duplicates.
+		$rescued = $this->find_attachment_with_meta( '_stwi_source_attachment_id', $source_attachment_id );
+		if ( $rescued ) {
+			$this->map->upsert( (int) $settings['source_blog_id'], 'attachment', $source_attachment_id, $rescued );
+			$this->logger->log(
+				'INFO',
+				'Recovered attachment mapping from meta',
+				array(
+					'source_id' => $source_attachment_id,
+					'dest_id'   => $rescued,
+				)
+			);
+			return $rescued;
+		}
+
 		$attachment = $this->source_db->get_post_with_meta( $source_attachment_id, $settings );
 		if ( empty( $attachment['post'] ) ) {
 			$this->logger->log( 'ERROR', 'Attachment not found in source DB', array( 'attachment_id' => $source_attachment_id ) );
@@ -223,6 +238,38 @@ class St_Wp_Importer_Media {
 		}
 		update_post_meta( $attachment_id, '_stwi_source_attached_file', $attached_file );
 
+		// Double-check mapping exists after upsert to avoid orphaned media.
+		$mapped_check = $this->map->get_destination_id(
+			$source_blog_id,
+			$source_id > 0 ? 'attachment' : 'attachment_url',
+			$source_id > 0 ? $source_id : $hash
+		);
+		if ( ! $mapped_check ) {
+			// Retry once in case a transient DB issue blocked the first upsert.
+			$this->map->upsert(
+				$source_blog_id,
+				$source_id > 0 ? 'attachment' : 'attachment_url',
+				$source_id > 0 ? $source_id : $hash,
+				(int) $attachment_id
+			);
+			$mapped_check = $this->map->get_destination_id(
+				$source_blog_id,
+				$source_id > 0 ? 'attachment' : 'attachment_url',
+				$source_id > 0 ? $source_id : $hash
+			);
+		}
+		if ( ! $mapped_check ) {
+			$this->logger->log(
+				'ERROR',
+				'Attachment imported but mapping missing after upsert',
+				array(
+					'source_id'     => $source_id,
+					'attached_file' => $attached_file,
+					'dest_id'       => $attachment_id,
+				)
+			);
+		}
+
 		$attached_path = get_attached_file( $attachment_id );
 		$final_size    = ( $attached_path && file_exists( $attached_path ) ) ? filesize( $attached_path ) : 0;
 
@@ -277,6 +324,29 @@ class St_Wp_Importer_Media {
 		}
 
 		$attached_file = ltrim( str_replace( $base, '', $source_url ), '/' );
+
+		// Check existing mapping by URL-hash to avoid duplicates.
+		$hash      = $this->hash_attached_file( $attached_file );
+		$mappedUrl = $this->map->get_destination_id( (int) $settings['source_blog_id'], 'attachment_url', $hash );
+		if ( $mappedUrl ) {
+			return $mappedUrl;
+		}
+
+		// Rescue: attachment already present locally with our meta but mapping missing.
+		$rescued = $this->find_attachment_with_meta( '_stwi_source_attached_file', $attached_file );
+		if ( $rescued ) {
+			$this->map->upsert( (int) $settings['source_blog_id'], 'attachment_url', $hash, $rescued );
+			$this->logger->log(
+				'INFO',
+				'Recovered attachment_url mapping from meta',
+				array(
+					'attached_file' => $attached_file,
+					'dest_id'       => $rescued,
+				)
+			);
+			return $rescued;
+		}
+
 		$found_id      = $this->source_db->find_attachment_id_by_file( $attached_file, $settings );
 		if ( $found_id ) {
 			return $this->import_attachment_by_id( $found_id, $settings, $dry_run );
@@ -510,5 +580,47 @@ class St_Wp_Importer_Media {
 		}
 
 		return $tmp;
+	}
+
+	/**
+	 * Locate an attachment by a specific meta key/value pair.
+	 *
+	 * @param string $meta_key
+	 * @param mixed  $meta_value
+	 * @return int|null
+	 */
+	private function find_attachment_with_meta( string $meta_key, $meta_value ): ?int {
+		$query = new \WP_Query(
+			array(
+				'post_type'              => 'attachment',
+				'post_status'            => 'any',
+				'posts_per_page'         => 1,
+				'fields'                 => 'ids',
+				'no_found_rows'          => true,
+				'update_post_term_cache' => false,
+				'update_post_meta_cache' => false,
+				'meta_query'             => array(
+					array(
+						'key'   => $meta_key,
+						'value' => $meta_value,
+					),
+				),
+			)
+		);
+
+		if ( ! empty( $query->posts ) ) {
+			return (int) $query->posts[0];
+		}
+		return null;
+	}
+
+	/**
+	 * Deterministic hash for attachment_url mapping rows (compatible with prior code).
+	 *
+	 * @param string $attached_file
+	 * @return int
+	 */
+	private function hash_attached_file( string $attached_file ): int {
+		return abs( crc32( $attached_file ) );
 	}
 }
