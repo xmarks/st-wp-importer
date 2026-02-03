@@ -330,8 +330,25 @@ class St_Wp_Importer_Admin {
 							$this->map->delete_row( (int) $row['id'] );
 							$this->logger->log( 'INFO', 'Deleted imported attachment', $context );
 						} else {
-							$errors[] = $context;
-							$this->logger->log( 'ERROR', 'Failed to delete imported attachment', $context );
+							// If attachment already missing or deletion fails, clear mapping so cleanup can proceed.
+							$exists = get_post( $dest_id );
+							$this->map->delete_row( (int) $row['id'] );
+							if ( $exists ) {
+								$this->logger->log(
+									'WARNING',
+									'Attachment delete failed; mapping removed anyway',
+									$context + array(
+										'post_status' => $exists->post_status,
+										'post_type'   => $exists->post_type,
+									)
+								);
+							} else {
+								$this->logger->log(
+									'INFO',
+									'Attachment already missing; mapping removed',
+									$context
+								);
+							}
 						}
 						continue;
 					}
@@ -372,8 +389,26 @@ class St_Wp_Importer_Admin {
 						$this->map->delete_row( (int) $row['id'] );
 						$this->logger->log( 'INFO', 'Deleted imported post', $context );
 					} else {
-						$errors[] = $context;
-						$this->logger->log( 'ERROR', 'Failed to delete imported post', $context );
+						// If the post is already gone, clear mapping to avoid endless failures.
+						$exists = get_post( $dest_id );
+						if ( ! $exists ) {
+							$this->map->delete_row( (int) $row['id'] );
+							$this->logger->log(
+								'INFO',
+								'Imported post already absent; mapping cleared',
+								$context
+							);
+						} else {
+							$errors[] = $context;
+							$this->logger->log(
+								'ERROR',
+								'Failed to delete imported post',
+								$context + array(
+									'post_type' => $exists->post_type,
+									'post_status' => $exists->post_status,
+								)
+							);
+						}
 					}
 				}
 
