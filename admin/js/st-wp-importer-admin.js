@@ -23,6 +23,12 @@
 		const idx = nextIndex();
 		const row = $(`
 			<tr class="stwi-scope-row">
+				<td class="stwi-enable-cell">
+					<label>
+						<input type="hidden" name="import_scope[${idx}][enabled]" value="0">
+						<input type="checkbox" name="import_scope[${idx}][enabled]" value="1" checked>
+					</label>
+				</td>
 				<td><input type="text" name="import_scope[${idx}][post_type]" value="${postType}" placeholder="e.g. events-cpt"></td>
 				<td><input type="text" name="import_scope[${idx}][taxonomies]" value="${taxonomies}" placeholder="e.g. event-type,industry,topic"><p class="description">Use slugs, comma-separated.</p></td>
 				<td><button type="button" class="button-link stwi-remove-row">Remove</button></td>
