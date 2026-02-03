@@ -105,8 +105,8 @@
 						<td>
 							<p><label><input name="plugin_yoastseo" type="checkbox" value="1" <?php checked( $settings['plugin_yoastseo'], 1 ); ?>> Include Yoast SEO metadata</label></p>
 							<p><label><input name="plugin_acf" type="checkbox" value="1" <?php checked( $settings['plugin_acf'], 1 ); ?>> Include ACF meta</label></p>
-							<p><label><input name="plugin_hreflang" type="checkbox" value="1" <?php checked( $settings['plugin_hreflang'], 1 ); ?>> Include Hreflang Manager meta (hreflang-*)</label></p>
 							<p><label><input name="plugin_permalink_manager" type="checkbox" value="1" <?php checked( $settings['plugin_permalink_manager'], 1 ); ?>> Include Permalink Manager Pro meta</label></p>
+							<p><label><input name="plugin_powerpress" type="checkbox" value="1" <?php checked( $settings['plugin_powerpress'], 1 ); ?>> Import PowerPress settings/options</label></p>
 							<p class="description">Toggle plugin-specific migrations. Logs remain verbose for debugging.</p>
 						</td>
 					</tr>
@@ -119,6 +119,7 @@
 				<table class="widefat stwi-scope-table">
 					<thead>
 						<tr>
+							<th style="width:10%">Enabled</th>
 							<th style="width:20%">Post Type</th>
 							<th>Taxonomies (comma-separated)</th>
 							<th style="width:10%">Remove</th>
@@ -128,6 +129,13 @@
 						<?php if ( ! empty( $settings['import_scope'] ) ) : ?>
 							<?php foreach ( $settings['import_scope'] as $index => $row ) : ?>
 								<tr class="stwi-scope-row">
+									<td class="stwi-enable-cell">
+										<label>
+											<input type="hidden" name="import_scope[<?php echo esc_attr( $index ); ?>][enabled]" value="0">
+											<input type="checkbox" name="import_scope[<?php echo esc_attr( $index ); ?>][enabled]" value="1" <?php checked( $row['enabled'] ?? 1, 1 ); ?>>
+											<span class="screen-reader-text">Enable <?php echo esc_html( $row['post_type'] ); ?></span>
+										</label>
+									</td>
 									<td>
 										<input type="text" name="import_scope[<?php echo esc_attr( $index ); ?>][post_type]" value="<?php echo esc_attr( $row['post_type'] ); ?>" placeholder="e.g. events-cpt">
 									</td>

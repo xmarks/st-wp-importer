@@ -95,7 +95,17 @@ class St_Wp_Importer_Importer {
 			}
 
 			$dry_run    = (bool) $settings['dry_run'];
-			$post_types = wp_list_pluck( $settings['import_scope'], 'post_type' );
+
+			// One-time import of PowerPress options so podcast players mirror source site.
+			$this->maybe_import_powerpress_options( $settings, $dry_run );
+
+			$enabled_scope = array_filter(
+				$settings['import_scope'],
+				function ( $row ) {
+					return ! isset( $row['enabled'] ) || (bool) $row['enabled'];
+				}
+			);
+			$post_types = wp_list_pluck( $enabled_scope, 'post_type' );
 			$post_types = array_filter( $post_types, function ( $pt ) {
 				return 'page' !== $pt;
 			} );
@@ -1062,5 +1072,129 @@ class St_Wp_Importer_Importer {
 
 	private function is_relevanssi_meta( string $key ): bool {
 		return ( strpos( $key, '_relevanssi' ) === 0 );
+	}
+
+	/**
+	 * Import PowerPress plugin options from the source site once.
+	 *
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return void
+	 */
+	private function maybe_import_powerpress_options( array $settings, bool $dry_run ): void {
+		if ( empty( $settings['plugin_powerpress'] ) ) {
+			return;
+		}
+
+		$state   = $this->state->get();
+		$flags   = $state['plugin_imports'] ?? array();
+		$already = ! empty( $flags['powerpress_options'] );
+
+		if ( $already && ! $dry_run ) {
+			return;
+		}
+
+		$options = $this->source_db->fetch_powerpress_options( $settings );
+		if ( empty( $options ) ) {
+			$this->logger->log( 'WARNING', 'PowerPress options not found in source DB.' );
+			return;
+		}
+
+		$total_imported = 0;
+		if ( $dry_run ) {
+			$this->logger->log(
+				'INFO',
+				'[DRY RUN] Would import PowerPress options',
+				array( 'count' => count( $options ) )
+			);
+			return;
+		}
+
+		foreach ( $options as $opt ) {
+			$name  = $opt['option_name'];
+			$value = maybe_unserialize( $opt['option_value'] );
+
+			$rewrite = $this->rewrite_powerpress_value( $value, $settings, $dry_run );
+			$value   = $rewrite['value'];
+			$total_imported += $rewrite['attachments_imported'];
+
+			update_option( $name, $value );
+		}
+
+		$flags['powerpress_options'] = time();
+		$this->state->update(
+			array(
+				'plugin_imports' => $flags,
+			)
+		);
+
+		$this->logger->log(
+			'INFO',
+			'Imported PowerPress options',
+			array(
+				'count'                 => count( $options ),
+				'attachments_imported'  => $total_imported,
+			)
+		);
+	}
+
+	/**
+	 * Recursively rewrite PowerPress option values:
+	 * - Replace source domain with current site domain.
+	 * - Import/upload media referenced in option values under uploads and swap to local URLs.
+	 *
+	 * @param mixed $value
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return array { value: mixed, attachments_imported: int }
+	 */
+	private function rewrite_powerpress_value( $value, array $settings, bool $dry_run ): array {
+		$imported = 0;
+		$source_base   = rtrim( $settings['source_site_url'], '/' );
+		$uploads_base  = $source_base . '/wp-content/uploads/';
+		$dest_base     = rtrim( home_url(), '/' );
+
+		// Strings: rewrite domain and handle uploads media.
+		if ( is_string( $value ) ) {
+			// First, domain swap.
+			$rewritten = str_replace( $source_base, $dest_base, $value );
+
+			// If it's an uploads URL, import media and swap to local URL.
+			if ( strpos( $value, $uploads_base ) === 0 ) {
+				$new_id = $this->media->import_attachment_from_url( $value, $settings, $dry_run );
+				if ( $new_id ) {
+					$new_url = wp_get_attachment_url( $new_id );
+					if ( $new_url ) {
+						$rewritten = $new_url;
+					}
+					$imported++;
+				}
+			}
+
+			return array(
+				'value'               => $rewritten,
+				'attachments_imported'=> $imported,
+			);
+		}
+
+		// Arrays: recurse.
+		if ( is_array( $value ) ) {
+			$out = array();
+			foreach ( $value as $k => $v ) {
+				$rew = $this->rewrite_powerpress_value( $v, $settings, $dry_run );
+				$out[ $k ] = $rew['value'];
+				$imported += $rew['attachments_imported'];
+			}
+			return array(
+				'value'               => $out,
+				'attachments_imported'=> $imported,
+			);
+		}
+
+		// Scalars or other types left untouched.
+		return array(
+			'value'               => $value,
+			'attachments_imported'=> 0,
+		);
 	}
 }

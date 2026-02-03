@@ -20,6 +20,9 @@ class St_Wp_Importer_State {
 			'next_run_at'    => 0,
 			'active_post_types' => array(),
 			'cursor'         => array(),
+			'plugin_imports' => array(
+				'powerpress_options' => 0,
+			),
 			'stats'          => array(
 				'posts_imported'   => 0,
 				'posts_updated'    => 0,

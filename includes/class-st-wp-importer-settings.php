@@ -30,49 +30,59 @@ class St_Wp_Importer_Settings {
 			'enable_logging'      => 1,
 			'plugin_yoastseo'     => 1,
 			'plugin_acf'         => 1,
-			'plugin_hreflang'     => 1,
 			'plugin_permalink_manager' => 1,
+			'plugin_powerpress'   => 1,
 			// Redirection excluded from migration scope.
 		'import_scope'        => array(
 				array(
 					'post_type'  => 'post',
 					'taxonomies' => array( 'category', 'post_tag', 'topic', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'solutions-cpt',
 					'taxonomies' => array( 'solutions-category', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'events-cpt',
 					'taxonomies' => array( 'event-type', 'topic', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'news-cpt',
 					'taxonomies' => array( 'news-category', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'podcasts-cpt',
 					'taxonomies' => array( 'podcasts-host', 'topic', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'webinars-cpt',
 					'taxonomies' => array( 'topic', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'resource',
 					'taxonomies' => array( 'resource-type', 'topic', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'case-study-cpt',
 					'taxonomies' => array( 'case-study-category', 'industry' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'training-course',
 					'taxonomies' => array( 'modality', 'leadership-level', 'course-type', 'topic' ),
+					'enabled'    => 1,
 				),
 				array(
 					'post_type'  => 'acab-cpt',
 					'taxonomies' => array( 'acab-leadership-category' ),
+					'enabled'    => 1,
 				),
 			),
 		);
@@ -133,8 +143,8 @@ class St_Wp_Importer_Settings {
 		$out['enable_logging']       = isset( $input['enable_logging'] ) ? 1 : 0;
 		$out['plugin_yoastseo']      = isset( $input['plugin_yoastseo'] ) ? 1 : 0;
 		$out['plugin_acf']           = isset( $input['plugin_acf'] ) ? 1 : 0;
-		$out['plugin_hreflang']      = isset( $input['plugin_hreflang'] ) ? 1 : 0;
 		$out['plugin_permalink_manager'] = isset( $input['plugin_permalink_manager'] ) ? 1 : 0;
+		$out['plugin_powerpress']    = isset( $input['plugin_powerpress'] ) ? 1 : 0;
 		// Redirection intentionally excluded.
 
 		$raw_scope            = $input['import_scope'] ?? array();
@@ -195,9 +205,12 @@ class St_Wp_Importer_Settings {
 			}
 			$taxonomies = array_values( array_unique( $taxonomies ) );
 
+			$enabled = isset( $row['enabled'] ) ? (int) (bool) $row['enabled'] : 0;
+
 			$clean[] = array(
 				'post_type'  => $post_type,
 				'taxonomies' => $taxonomies,
+				'enabled'    => $enabled,
 			);
 		}
 

@@ -105,6 +105,22 @@ class St_Wp_Importer_Source_DB {
 	}
 
 	/**
+	 * Get options table name for the source site/blog.
+	 *
+	 * @param array $settings
+	 * @return string
+	 */
+	public function get_options_table( array $settings ): string {
+		$prefix  = $settings['source_table_prefix'] ?? 'wp_';
+		$blog_id = (int) ( $settings['source_blog_id'] ?? 1 );
+		$base    = $prefix;
+		if ( $blog_id > 1 ) {
+			$base = $prefix . $blog_id . '_';
+		}
+		return $base . 'options';
+	}
+
+	/**
 	 * Fetch posts of a type after cursor.
 	 *
 	 * @param string $post_type
@@ -229,5 +245,21 @@ class St_Wp_Importer_Source_DB {
 			'user' => $user,
 			'meta' => $meta,
 		);
+	}
+
+	/**
+	 * Fetch PowerPress-related options from the source site.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	public function fetch_powerpress_options( array $settings ): array {
+		$db     = $this->connect( $settings );
+		$table  = $this->get_options_table( $settings );
+		$sql    = $db->prepare(
+			"SELECT option_name, option_value FROM {$table} WHERE option_name LIKE %s",
+			'powerpress_%'
+		);
+		return $db->get_results( $sql, ARRAY_A ) ?: array();
 	}
 }
