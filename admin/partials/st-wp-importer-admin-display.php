@@ -107,6 +107,7 @@
 							<p><label><input name="plugin_acf" type="checkbox" value="1" <?php checked( $settings['plugin_acf'], 1 ); ?>> Include ACF meta</label></p>
 							<p><label><input name="plugin_permalink_manager" type="checkbox" value="1" <?php checked( $settings['plugin_permalink_manager'], 1 ); ?>> Include Permalink Manager Pro meta</label></p>
 							<p><label><input name="plugin_powerpress" type="checkbox" value="1" <?php checked( $settings['plugin_powerpress'], 1 ); ?>> Import PowerPress settings/options</label></p>
+							<p><label><input name="plugin_acf_theme_settings" type="checkbox" value="1" <?php checked( $settings['plugin_acf_theme_settings'], 1 ); ?>> Import ACF Theme Settings (options)</label></p>
 							<p class="description">Toggle plugin-specific migrations. Logs remain verbose for debugging.</p>
 						</td>
 					</tr>

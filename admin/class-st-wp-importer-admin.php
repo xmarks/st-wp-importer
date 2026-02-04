@@ -300,6 +300,8 @@ class St_Wp_Importer_Admin {
 
 		$deleted = array( 'posts' => 0, 'attachments' => 0, 'terms' => 0, 'users' => 0 );
 		$errors  = array();
+		$options_deleted = array( 'acf_theme' => 0, 'powerpress' => 0 );
+		$state = $this->state->get();
 
 		$restore_cache = wp_suspend_cache_invalidation( true );
 		wp_defer_term_counting( true );
@@ -416,6 +418,73 @@ class St_Wp_Importer_Admin {
 					break;
 				}
 			} while ( ( microtime( true ) - $started ) < $time_budget );
+
+			// One-time option cleanup (outside mapping table).
+			global $wpdb;
+			$options_table = $wpdb->options;
+
+			// Targeted option cleanup using recorded names; fall back to pattern if none recorded.
+			$acf_names = $state['imported_options']['acf'] ?? array();
+			if ( ! empty( $acf_names ) ) {
+				$placeholders = implode( ',', array_fill( 0, count( $acf_names ), '%s' ) );
+				$sql          = $wpdb->prepare(
+					"DELETE FROM {$options_table} WHERE option_name IN ($placeholders)",
+					$acf_names
+				);
+				$acf_deleted = $wpdb->query( $sql );
+				if ( false !== $acf_deleted ) {
+					$options_deleted['acf_theme'] = (int) $acf_deleted;
+					if ( $acf_deleted ) {
+						$this->logger->log( 'INFO', 'Deleted imported ACF theme options', array( 'count' => $acf_deleted ) );
+					}
+				}
+			}
+
+			$pp_names = $state['imported_options']['powerpress'] ?? array();
+			if ( ! empty( $pp_names ) ) {
+				$placeholders = implode( ',', array_fill( 0, count( $pp_names ), '%s' ) );
+				$sql          = $wpdb->prepare(
+					"DELETE FROM {$options_table} WHERE option_name IN ($placeholders)",
+					$pp_names
+				);
+				$pp_deleted = $wpdb->query( $sql );
+				if ( false !== $pp_deleted ) {
+					$options_deleted['powerpress'] = (int) $pp_deleted;
+					if ( $pp_deleted ) {
+						$this->logger->log( 'INFO', 'Deleted imported PowerPress options', array( 'count' => $pp_deleted ) );
+					}
+				}
+			}
+
+			// If nothing recorded (older runs), fall back to safe patterns.
+			if ( empty( $acf_names ) ) {
+				$acf_deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$options_table} WHERE option_name LIKE %s", 'acf\\_%' ) );
+				if ( false !== $acf_deleted ) {
+					$options_deleted['acf_theme'] += (int) $acf_deleted;
+					if ( $acf_deleted ) {
+						$this->logger->log( 'INFO', 'Deleted ACF theme settings options (pattern fallback)', array( 'count' => $acf_deleted ) );
+					}
+				}
+
+				$options_deleted['acf_theme'] += (int) $wpdb->query(
+					$wpdb->prepare( "DELETE FROM {$options_table} WHERE option_name LIKE %s", 'options\\_%' )
+				);
+			}
+
+			if ( empty( $pp_names ) ) {
+				$pp_deleted = $wpdb->query( $wpdb->prepare( "DELETE FROM {$options_table} WHERE option_name LIKE %s", 'powerpress\\_%' ) );
+				if ( false !== $pp_deleted ) {
+					$options_deleted['powerpress'] += (int) $pp_deleted;
+					if ( $pp_deleted ) {
+						$this->logger->log( 'INFO', 'Deleted PowerPress options (pattern fallback)', array( 'count' => $pp_deleted ) );
+					}
+				}
+			}
+
+			// Reset recorded option lists after cleanup.
+			$state['imported_options']['acf']        = array();
+			$state['imported_options']['powerpress'] = array();
+			$this->state->update( array( 'imported_options' => $state['imported_options'] ) );
 		} finally {
 			wp_suspend_cache_invalidation( $restore_cache );
 			wp_defer_term_counting( false );
@@ -447,6 +516,7 @@ class St_Wp_Importer_Admin {
 				'message'    => sprintf( 'Deleted %d posts, %d attachments, %d terms, %d users. Remaining: %d', $deleted['posts'], $deleted['attachments'], $deleted['terms'], $deleted['users'], $remaining ),
 				'deleted'    => $deleted,
 				'remaining'  => $remaining,
+				'options_deleted' => $options_deleted,
 				'duration_s' => round( microtime( true ) - $started, 2 ),
 				'full_purge' => $full_purge,
 			)
