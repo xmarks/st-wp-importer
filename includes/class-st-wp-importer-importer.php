@@ -98,6 +98,8 @@ class St_Wp_Importer_Importer {
 
 			// One-time import of PowerPress options so podcast players mirror source site.
 			$this->maybe_import_powerpress_options( $settings, $dry_run );
+			// One-time import of ACF theme options (options pages).
+			$this->maybe_import_acf_theme_settings( $settings, $dry_run );
 
 			$enabled_scope = array_filter(
 				$settings['import_scope'],
@@ -1088,6 +1090,7 @@ class St_Wp_Importer_Importer {
 
 		$state   = $this->state->get();
 		$flags   = $state['plugin_imports'] ?? array();
+		$opt_log = $state['imported_options']['powerpress'] ?? array();
 		$already = ! empty( $flags['powerpress_options'] );
 
 		if ( $already && ! $dry_run ) {
@@ -1118,13 +1121,19 @@ class St_Wp_Importer_Importer {
 			$value   = $rewrite['value'];
 			$total_imported += $rewrite['attachments_imported'];
 
-			update_option( $name, $value );
+			if ( ! $dry_run ) {
+				update_option( $name, $value );
+				$opt_log[] = $name;
+			}
 		}
 
 		$flags['powerpress_options'] = time();
 		$this->state->update(
 			array(
-				'plugin_imports' => $flags,
+				'plugin_imports'   => $flags,
+				'imported_options' => array(
+					'powerpress' => array_values( array_unique( $opt_log ) ),
+				),
 			)
 		);
 
@@ -1195,6 +1204,67 @@ class St_Wp_Importer_Importer {
 		return array(
 			'value'               => $value,
 			'attachments_imported'=> 0,
+		);
+	}
+
+	/**
+	 * Import ACF options (theme settings) once.
+	 *
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 */
+	private function maybe_import_acf_theme_settings( array $settings, bool $dry_run ): void {
+		if ( empty( $settings['plugin_acf_theme_settings'] ) ) {
+			return;
+		}
+
+		$state   = $this->state->get();
+		$flags   = $state['plugin_imports'] ?? array();
+		$opt_log = $state['imported_options']['acf'] ?? array();
+		$already = ! empty( $flags['acf_theme_settings'] );
+
+		if ( $already && ! $dry_run ) {
+			return;
+		}
+
+		$options = $this->source_db->fetch_acf_options( $settings );
+		if ( empty( $options ) ) {
+			$this->logger->log( 'WARNING', 'ACF theme settings not found in source DB.' );
+			return;
+		}
+
+		if ( $dry_run ) {
+			$this->logger->log(
+				'INFO',
+				'[DRY RUN] Would import ACF theme settings',
+				array( 'count' => count( $options ) )
+			);
+			return;
+		}
+
+		foreach ( $options as $opt ) {
+			$name  = $opt['option_name'];
+			$value = maybe_unserialize( $opt['option_value'] );
+			update_option( $name, $value );
+			$opt_log[] = $name;
+		}
+
+		$flags['acf_theme_settings'] = time();
+		$this->state->update(
+			array(
+				'plugin_imports'   => $flags,
+				'imported_options' => array(
+					'acf' => array_values( array_unique( $opt_log ) ),
+				),
+			)
+		);
+
+		$this->logger->log(
+			'INFO',
+			'Imported ACF theme settings',
+			array(
+				'count' => count( $options ),
+			)
 		);
 	}
 }

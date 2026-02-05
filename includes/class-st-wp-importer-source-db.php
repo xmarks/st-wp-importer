@@ -262,4 +262,22 @@ class St_Wp_Importer_Source_DB {
 		);
 		return $db->get_results( $sql, ARRAY_A ) ?: array();
 	}
+
+	/**
+	 * Fetch all ACF options (acf/options) from source.
+	 *
+	 * @param array $settings
+	 * @return array
+	 */
+	public function fetch_acf_options( array $settings ): array {
+		$db     = $this->connect( $settings );
+		$table  = $this->get_options_table( $settings );
+		$sql    = "
+			SELECT option_name, option_value
+			FROM {$table}
+			WHERE option_name LIKE 'acf_%'
+			   OR option_name LIKE 'options_%'
+		";
+		return $db->get_results( $sql, ARRAY_A ) ?: array();
+	}
 }

@@ -22,6 +22,11 @@ class St_Wp_Importer_State {
 			'cursor'         => array(),
 			'plugin_imports' => array(
 				'powerpress_options' => 0,
+				'acf_theme_settings' => 0,
+			),
+			'imported_options' => array(
+				'acf'        => array(),
+				'powerpress' => array(),
 			),
 			'stats'          => array(
 				'posts_imported'   => 0,

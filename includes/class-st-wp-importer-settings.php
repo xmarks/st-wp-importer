@@ -32,6 +32,7 @@ class St_Wp_Importer_Settings {
 			'plugin_acf'         => 1,
 			'plugin_permalink_manager' => 1,
 			'plugin_powerpress'   => 1,
+			'plugin_acf_theme_settings' => 1,
 			// Redirection excluded from migration scope.
 		'import_scope'        => array(
 				array(
@@ -145,6 +146,7 @@ class St_Wp_Importer_Settings {
 		$out['plugin_acf']           = isset( $input['plugin_acf'] ) ? 1 : 0;
 		$out['plugin_permalink_manager'] = isset( $input['plugin_permalink_manager'] ) ? 1 : 0;
 		$out['plugin_powerpress']    = isset( $input['plugin_powerpress'] ) ? 1 : 0;
+		$out['plugin_acf_theme_settings'] = isset( $input['plugin_acf_theme_settings'] ) ? 1 : 0;
 		// Redirection intentionally excluded.
 
 		$raw_scope            = $input['import_scope'] ?? array();
