@@ -145,9 +145,134 @@ class St_Wp_Importer_Content {
 			$updated_content
 		);
 
+		// Rewrite ACF block attribute media (e.g., image/file fields stored as IDs in block JSON).
+		$acf_rewrite = $this->rewrite_acf_block_media( $updated_content, $settings, $dry_run );
+		$updated_content = $acf_rewrite['content'];
+		$imported       += $acf_rewrite['attachments_imported'];
+
 		return array(
 			'content'               => $updated_content,
 			'attachments_imported'  => $imported,
 		);
+	}
+
+	/**
+	 * Parse block markup and rewrite ACF block media fields (image/file/gallery).
+	 *
+	 * ACF blocks store raw field values in block comment JSON (e.g., "section_image":123).
+	 * These IDs are not caught by the generic Gutenberg id/url regex above, so we parse blocks,
+	 * detect ACF field types, import the referenced attachments, and swap in destination IDs.
+	 */
+	private function rewrite_acf_block_media( string $content, array $settings, bool $dry_run ): array {
+		if ( strpos( $content, 'acf/' ) === false || ! function_exists( 'parse_blocks' ) || ! function_exists( 'serialize_blocks' ) ) {
+			return array( 'content' => $content, 'attachments_imported' => 0 );
+		}
+
+		$blocks = parse_blocks( $content );
+		if ( empty( $blocks ) ) {
+			return array( 'content' => $content, 'attachments_imported' => 0 );
+		}
+
+		$modified  = false;
+		$imported  = 0;
+		$rewritten = $this->walk_acf_blocks( $blocks, $settings, $dry_run, $imported, $modified );
+
+		if ( ! $modified ) {
+			return array( 'content' => $content, 'attachments_imported' => 0 );
+		}
+
+		return array(
+			'content'              => serialize_blocks( $rewritten ),
+			'attachments_imported' => $imported,
+		);
+	}
+
+	/**
+	 * Recursively process blocks to rewrite ACF media field values.
+	 *
+	 * @param array $blocks
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @param int   $imported
+	 * @param bool  $modified
+	 * @return array
+	 */
+	private function walk_acf_blocks( array $blocks, array $settings, bool $dry_run, int &$imported, bool &$modified ): array {
+		foreach ( $blocks as &$block ) {
+			if ( ! empty( $block['innerBlocks'] ) ) {
+				$block['innerBlocks'] = $this->walk_acf_blocks( $block['innerBlocks'], $settings, $dry_run, $imported, $modified );
+			}
+
+			if ( empty( $block['blockName'] ) || strpos( $block['blockName'], 'acf/' ) !== 0 ) {
+				continue;
+			}
+			if ( empty( $block['attrs']['data'] ) || ! is_array( $block['attrs']['data'] ) ) {
+				continue;
+			}
+
+			$data          = $block['attrs']['data'];
+			$block_changed = false;
+
+			foreach ( $data as $key => $value ) {
+				if ( strpos( $key, '_' ) === 0 ) {
+					continue;
+				}
+
+				$field_key  = $data[ '_' . $key ] ?? '';
+				$field_type = $this->get_acf_field_type( $field_key );
+				if ( ! $field_type ) {
+					continue;
+				}
+
+				if ( in_array( $field_type, array( 'image', 'file' ), true ) ) {
+					$rewrite = $this->maybe_import_acf_media_value( $key, $value, $settings, $dry_run, array( $key ) );
+					if ( $rewrite['imported'] > 0 || $rewrite['value'] !== $value ) {
+						$data[ $key ] = $rewrite['value'];
+						$imported    += $rewrite['imported'];
+						$block_changed = true;
+					}
+				} elseif ( 'gallery' === $field_type && is_array( $value ) ) {
+					$gallery_changed = false;
+					$new_gallery     = array();
+					foreach ( $value as $item ) {
+						if ( is_numeric( $item ) ) {
+							$new_id = $this->media->import_attachment_by_id( (int) $item, $settings, $dry_run );
+							if ( $new_id ) {
+								$new_gallery[]   = $new_id;
+								$imported++;
+								$gallery_changed = true;
+								continue;
+							}
+						}
+						$new_gallery[] = $item;
+					}
+					if ( $gallery_changed ) {
+						$data[ $key ]   = $new_gallery;
+						$block_changed  = true;
+					}
+				}
+			}
+
+			if ( $block_changed ) {
+				$block['attrs']['data'] = $data;
+				$modified               = true;
+			}
+		}
+
+		return $blocks;
+	}
+
+	/**
+	 * Resolve ACF field type for a field key (field_XXXX) if available.
+	 */
+	private function get_acf_field_type( string $field_key ): ?string {
+		if ( empty( $field_key ) || ! function_exists( 'acf_get_field' ) ) {
+			return null;
+		}
+		$field = acf_get_field( $field_key );
+		if ( $field && is_array( $field ) && ! empty( $field['type'] ) ) {
+			return $field['type'];
+		}
+		return null;
 	}
 }
