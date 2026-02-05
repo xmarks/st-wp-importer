@@ -220,11 +220,9 @@ class St_Wp_Importer_Content {
 
 				$field_key  = $data[ '_' . $key ] ?? '';
 				$field_type = $this->get_acf_field_type( $field_key );
-				if ( ! $field_type ) {
-					continue;
-				}
 
-				if ( in_array( $field_type, array( 'image', 'file' ), true ) ) {
+				if ( in_array( $field_type, array( 'image', 'file' ), true )
+					|| ( ! $field_type && $this->looks_like_media_meta_key( $key ) ) ) {
 					$rewrite = $this->maybe_import_acf_media_value( $key, $value, $settings, $dry_run, array( $key ) );
 					if ( $rewrite['imported'] > 0 || $rewrite['value'] !== $value ) {
 						$data[ $key ] = $rewrite['value'];
