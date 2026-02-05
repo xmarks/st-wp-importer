@@ -14,9 +14,9 @@
  *
  * @wordpress-plugin
  * Plugin Name:       ST WordPress Importer
- * Plugin URI:        https://xmarks/st-wp-importer
+ * Plugin URI:        https://github.com/xmarks/st-wp-importer
  * Description:       plugin connects to "source-site" database, and imports Posts / CPT alongside media and metadata (for plugins as well) into "currently-installed site"
- * Version:           1.0.8
+ * Version:           1.0.9
  * Author:            SnailTheme
  * Author URI:        https://www.snailtheme.com/
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'ST_WP_IMPORTER_VERSION', '1.0.8' );
+define( 'ST_WP_IMPORTER_VERSION', '1.0.9' );
 
 /**
  * The code that runs during plugin activation.
