@@ -298,15 +298,29 @@ class St_Wp_Importer_Importer {
 					'update'    => (bool) $dest_id,
 				)
 			);
-			if ( $dest_id ) {
-				$base_post['ID'] = $dest_id;
-				$result          = wp_update_post( $base_post, true );
-				$status          = 'updated';
-				$dest_id         = is_wp_error( $result ) ? 0 : (int) $result;
-			} else {
-				$dest_id = wp_insert_post( $base_post, true );
-				$status  = 'imported';
-			}
+
+			$upsert = $this->run_with_unfiltered_html(
+				function () use ( $dest_id, $base_post ) {
+					$status = 'imported';
+
+					if ( $dest_id ) {
+						$base_post['ID'] = $dest_id;
+						$result          = wp_update_post( $base_post, true );
+						$status          = 'updated';
+						$dest_id         = is_wp_error( $result ) ? $result : (int) $result;
+					} else {
+						$dest_id = wp_insert_post( $base_post, true );
+					}
+
+					return array(
+						'status'  => $status,
+						'dest_id' => $dest_id,
+					);
+				}
+			);
+
+			$status  = $upsert['status'];
+			$dest_id = $upsert['dest_id'];
 
 			if ( is_wp_error( $dest_id ) ) {
 				$this->logger->log(
@@ -869,6 +883,50 @@ class St_Wp_Importer_Importer {
 				array( 'dest_id' => $dest_id, 'meta_key' => $key, 'value' => $value )
 			);
 		}
+	}
+
+	/**
+	 * Run a callback while guaranteeing unfiltered HTML (prevents KSES stripping style/script when cron user is 0).
+	 *
+	 * @param callable $callback
+	 * @return mixed
+	 */
+	private function run_with_unfiltered_html( callable $callback ) {
+		$removed = array();
+		$tags    = array( 'content_save_pre', 'excerpt_save_pre', 'content_filtered_save_pre' );
+
+		foreach ( $tags as $tag ) {
+			if ( has_filter( $tag, 'wp_filter_post_kses' ) ) {
+				remove_filter( $tag, 'wp_filter_post_kses' );
+				$removed[] = array( $tag, 'wp_filter_post_kses' );
+			}
+			if ( has_filter( $tag, 'wp_filter_kses' ) ) {
+				remove_filter( $tag, 'wp_filter_kses' );
+				$removed[] = array( $tag, 'wp_filter_kses' );
+			}
+		}
+
+		add_filter( 'user_has_cap', array( $this, 'grant_unfiltered_html_cap' ), 10, 3 );
+
+		try {
+			return $callback();
+		} finally {
+			remove_filter( 'user_has_cap', array( $this, 'grant_unfiltered_html_cap' ), 10 );
+			foreach ( $removed as $restore ) {
+				add_filter( $restore[0], $restore[1] );
+			}
+		}
+	}
+
+	/**
+	 * Capability grant filter to allow unfiltered_html during importer writes.
+	 *
+	 * @param array $allcaps
+	 * @return array
+	 */
+	public function grant_unfiltered_html_cap( array $allcaps ): array {
+		$allcaps['unfiltered_html'] = true;
+		return $allcaps;
 	}
 
 	/**
