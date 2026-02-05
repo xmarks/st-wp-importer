@@ -1323,11 +1323,7 @@ class St_Wp_Importer_Importer {
 		$state   = $this->state->get();
 		$flags   = $state['plugin_imports'] ?? array();
 		$opt_log = $state['imported_options']['acf'] ?? array();
-		$already = ! empty( $flags['acf_theme_settings'] );
-
-		if ( $already && ! $dry_run ) {
-			return;
-		}
+		// Always (re)run to ensure media references are rewritten to local IDs.
 
 		$options = $this->source_db->fetch_acf_options( $settings );
 		if ( empty( $options ) ) {
