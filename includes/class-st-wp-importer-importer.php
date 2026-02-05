@@ -992,6 +992,35 @@ class St_Wp_Importer_Importer {
 
         // Array form from ACF image/file (return = array).
         if ( is_array( $value ) ) {
+            // Gallery-style: flat list of IDs.
+            if ( $this->is_list_of_scalars( $value ) ) {
+                $new_gallery = array();
+                $changed     = false;
+                foreach ( $value as $item ) {
+                    $new_item = $item;
+                    if ( is_numeric( $item ) ) {
+                        $new_id = $this->media->import_attachment_by_id( (int) $item, $settings, $dry_run );
+                        if ( $new_id ) {
+                            $new_item = $new_id;
+                            $result['imported']++;
+                            $changed = true;
+                        }
+                    } elseif ( is_string( $item ) && strpos( $item, '/wp-content/uploads/' ) !== false ) {
+                        $new_id = $this->media->import_attachment_from_url( $item, $settings, $dry_run );
+                        if ( $new_id ) {
+                            $new_item = $new_id;
+                            $result['imported']++;
+                            $changed = true;
+                        }
+                    }
+                    $new_gallery[] = $new_item;
+                }
+                if ( $changed ) {
+                    $result['value'] = $new_gallery;
+                }
+                return $result;
+            }
+
             // Typical keys: id / ID, url, sizes, filename, filesize, mime_type
             $src_id = 0;
             if ( isset( $value['id'] ) && is_numeric( $value['id'] ) ) {
@@ -1034,6 +1063,21 @@ class St_Wp_Importer_Importer {
         }
 
         return $result;
+    }
+
+    /**
+     * Simple check for a zero-indexed list of scalar values.
+     */
+    private function is_list_of_scalars( array $value ): bool {
+        if ( array_values( $value ) !== $value ) {
+            return false;
+        }
+        foreach ( $value as $item ) {
+            if ( is_array( $item ) || is_object( $item ) ) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
