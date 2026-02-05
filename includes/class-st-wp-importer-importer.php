@@ -1335,6 +1335,8 @@ class St_Wp_Importer_Importer {
 			return;
 		}
 
+		$total_imported = 0;
+
 		if ( $dry_run ) {
 			$this->logger->log(
 				'INFO',
@@ -1345,8 +1347,12 @@ class St_Wp_Importer_Importer {
 		}
 
 		foreach ( $options as $opt ) {
-			$name  = $opt['option_name'];
-			$value = maybe_unserialize( $opt['option_value'] );
+			$name   = $opt['option_name'];
+			$value  = maybe_unserialize( $opt['option_value'] );
+			$rew    = $this->rewrite_option_media( $value, $settings, $dry_run );
+			$value  = $rew['value'];
+			$total_imported += $rew['attachments_imported'];
+
 			update_option( $name, $value );
 			$opt_log[] = $name;
 		}
@@ -1366,7 +1372,112 @@ class St_Wp_Importer_Importer {
 			'Imported ACF theme settings',
 			array(
 				'count' => count( $options ),
+				'attachments_imported' => $total_imported,
 			)
+		);
+	}
+
+	/**
+	 * Recursively rewrite option values to import media referenced in ACF options.
+	 *
+	 * @param mixed $value
+	 * @param array $settings
+	 * @param bool  $dry_run
+	 * @return array { value, attachments_imported }
+	 */
+	private function rewrite_option_media( $value, array $settings, bool $dry_run ): array {
+		$imported = 0;
+
+		// Numeric: treat as attachment ID.
+		if ( is_numeric( $value ) ) {
+			$new_id = $this->media->import_attachment_by_id( (int) $value, $settings, $dry_run );
+			if ( $new_id ) {
+				$imported++;
+				return array( 'value' => $new_id, 'attachments_imported' => $imported );
+			}
+			return array( 'value' => $value, 'attachments_imported' => $imported );
+		}
+
+		// String URL to uploads.
+		if ( is_string( $value ) && strpos( $value, '/wp-content/uploads/' ) !== false ) {
+			$new_id = $this->media->import_attachment_from_url( $value, $settings, $dry_run );
+			if ( $new_id ) {
+				$imported++;
+				return array( 'value' => $new_id, 'attachments_imported' => $imported );
+			}
+			return array( 'value' => $value, 'attachments_imported' => $imported );
+		}
+
+		// Array: recurse.
+		if ( is_array( $value ) ) {
+			// Gallery-like list of IDs/URLs.
+			if ( $this->is_list_of_scalars( $value ) ) {
+				$new = array();
+				$changed = false;
+				foreach ( $value as $item ) {
+					$rew = $this->rewrite_option_media( $item, $settings, $dry_run );
+					$new[] = $rew['value'];
+					$imported += $rew['attachments_imported'];
+					if ( $rew['value'] !== $item ) {
+						$changed = true;
+					}
+				}
+				return array(
+					'value' => $changed ? $new : $value,
+					'attachments_imported' => $imported,
+				);
+			}
+
+			$new = $value;
+
+			// ACF image/file array return.
+			if ( isset( $value['id'] ) || isset( $value['ID'] ) || isset( $value['url'] ) ) {
+				$src_id = 0;
+				if ( isset( $value['id'] ) && is_numeric( $value['id'] ) ) {
+					$src_id = (int) $value['id'];
+				} elseif ( isset( $value['ID'] ) && is_numeric( $value['ID'] ) ) {
+					$src_id = (int) $value['ID'];
+				}
+
+				if ( $src_id ) {
+					$new_id = $this->media->import_attachment_by_id( $src_id, $settings, $dry_run );
+					if ( $new_id ) {
+						$new['id'] = $new['ID'] = $new_id;
+						$imported++;
+					}
+				}
+
+				if ( isset( $value['url'] ) && is_string( $value['url'] ) && strpos( $value['url'], '/wp-content/uploads/' ) !== false ) {
+					$new_url_id = $this->media->import_attachment_from_url( $value['url'], $settings, $dry_run );
+					if ( $new_url_id ) {
+						$new['url'] = wp_get_attachment_url( $new_url_id ) ?: $value['url'];
+						$imported++;
+					}
+				}
+
+				return array(
+					'value' => $new,
+					'attachments_imported' => $imported,
+				);
+			}
+
+			// Generic associative array: recurse each value.
+			foreach ( $value as $k => $v ) {
+				$rew = $this->rewrite_option_media( $v, $settings, $dry_run );
+				$new[ $k ] = $rew['value'];
+				$imported += $rew['attachments_imported'];
+			}
+
+			return array(
+				'value' => $new,
+				'attachments_imported' => $imported,
+			);
+		}
+
+		// Other types untouched.
+		return array(
+			'value' => $value,
+			'attachments_imported' => 0,
 		);
 	}
 }
