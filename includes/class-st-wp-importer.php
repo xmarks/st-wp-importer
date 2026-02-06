@@ -106,6 +106,7 @@ class St_Wp_Importer {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-loader.php';
 
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/trait-st-wp-importer-media-helpers.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-settings.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-state.php';
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-st-wp-importer-logger.php';

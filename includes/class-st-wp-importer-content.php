@@ -4,6 +4,7 @@
  * Content rewrite helper.
  */
 class St_Wp_Importer_Content {
+	use St_Wp_Importer_Media_Helpers;
 
 	/**
 	 * @var St_Wp_Importer_Logger
